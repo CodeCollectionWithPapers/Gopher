@@ -1,0 +1,231 @@
+﻿bug_id,patch
+18,"234 	return 0;
+235 }
+236 
+237 static int wav_read_comments(struct input_plugin_data *ip_data,
+238 		struct keyval **comments)
+239 {
+240 	*comments = xnew0(struct keyval, 1);
+241 	return 0;
+242 }
+243 
+244 static int wav_duration(struct input_plugin_data *ip_data)"
+19,"234 	return 0;
+235 }
+236 
+237 static int wav_read_comments(struct input_plugin_data *ip_data,
+238 		struct keyval **comments)
+239 {
+240 	*comments = xnew0(struct keyval, 1);
+241 	return 0;
+242 }
+243 
+244 static int wav_duration(struct input_plugin_data *ip_data)"
+35,"525 	return 0;
+526 }
+527 
+528 int expr_eval(struct expr *expr, struct track_info *ti)
+529 {
+530 	enum expr_type type = expr->type;
+531 	const char *key;
+532 
+533 	CHECK_EXPR(expr);
+534 	if (expr->left) {
+535 		int left = expr_eval(expr->left, ti);
+536 
+537 		if (type == EXPR_AND)
+538 			return left && expr_eval(expr->right, ti);
+539 		if (type == EXPR_OR)
+540 			return left || expr_eval(expr->right, ti);
+541 		/* EXPR_NOT */
+542 		return !left;
+543 	}
+544 
+545 	key = expr->key;
+546 	if (type == EXPR_STR) {
+547 		const char *val;
+548 		int res;
+549 
+550 		if (strcmp(key, ""filename"") == 0) {
+551 			val = ti->filename;
+552 		} else {
+553 			val = comments_get_val(ti->comments, key);
+554 			if (val == NULL) {
+555 				/* NULL=""something"" is false */
+556 				if (expr->estr.op == SOP_EQ)
+557 					return 0;
+558 				/* NULL!=""something"" is true */
+559 				return 1;
+560 			}
+561 		}
+562 		res = glob_match(&expr->estr.glob_head, val);
+563 		if (expr->estr.op == SOP_EQ)
+564 			return res;
+565 		return !res;
+566 	} else if (type == EXPR_INT) {
+567 		int val, res;
+568 
+569 		if (strcmp(key, ""duration"") == 0) {
+570 			val = ti->duration;
+571 			/* duration of a stream is infinite (well, almost) */
+572 			if (is_url(ti->filename))
+573 				val = INT_MAX;
+574 		} else {
+575 			val = comments_get_int(ti->comments, key);
+576 		}
+577 		if (expr->eint.val == -1) {
+578 			/* -1 is ""not set""
+579 			 * doesn't make sense to do 123 < ""not set""
+580 			 * but it makes sense to do date=-1 (date is not set)
+581 			 */
+582 			if (expr->eint.op == IOP_EQ)
+583 				return val == -1;
+584 			if (expr->eint.op == IOP_NE)
+585 				return val != -1;
+586 		}
+587 		if (val == -1) {
+588 			/* tag not set, can't compare */
+589 			return 0;
+590 		}
+591 		res = val - expr->eint.val;
+592 		switch (expr->eint.op) {
+593 		case IOP_LT:
+594 			return res < 0;
+595 		case IOP_LE:
+596 			return res <= 0;
+597 		case IOP_EQ:
+598 			return res == 0;
+599 		case IOP_GE:
+600 			return res >= 0;
+601 		case IOP_GT:
+602 			return res > 0;
+603 		case IOP_NE:
+604 			return res != 0;
+605 		}
+606 	}
+607 	if (strcmp(key, ""stream"") == 0)
+608 		return is_url(ti->filename);
+609 	return track_info_has_tag(ti);
+610 }
+611 
+612 void expr_free(struct expr *expr)"
+42,"137  * aling_left:
+138  *     1 => aling left. 0 => align right
+139  */
+140 static void print_str(char *buf, int *idx, const char *str, int width, int align_left)
+141 {
+142 	int d = *idx;
+143 
+144 	if (width) {
+145 		int ws_len;
+146 		int i = 0;
+147 
+148 		if (align_left) {
+149 			i = width;
+150 			d += u_copy_chars(buf + d, str, &i);
+151 
+152 			ws_len = width - i;
+153 			memset(buf + d, ' ', ws_len);
+154 			d += ws_len;
+155 		} else {
+156 			int s = 0;
+157 
+158 			ws_len = width - u_str_width(str);
+159 
+160 			if (ws_len > 0) {
+161 				memset(buf + d, ' ', ws_len);
+162 				d += ws_len;
+163 				i += ws_len;
+164 			}
+165 
+166 			if (ws_len < 0) {
+167 				int w, c = -ws_len;
+168 				uchar u;
+169 
+170 				while (c > 0) {
+171 					u_get_char(str, &s, &u);
+172 					w = u_char_width(u);
+173 					c -= w;
+174 				}
+175 				if (c < 0) {
+176 					/* gaah, skipped too much */
+177 					if (u_char_width(u) == 2) {
+178 						/* double-byte */
+179 						buf[d++] = ' ';
+180 					} else {
+181 						/* <xx> */
+182 						if (c == -3)
+183 							buf[d++] = hex_tab[(u >> 4) & 0xf];
+184 						if (c <= -2)
+185 							buf[d++] = hex_tab[u & 0xf];
+186 						buf[d++] = '>';
+187 					}
+188 				}
+189 			}
+190 
+191 			if (width - i > 0) {
+192 				int w = width - i;
+193 
+194 				d += u_copy_chars(buf + d, str + s, &w);
+195 			}
+196 		}
+197 	} else {
+198 		int s = 0;
+199 		uchar u;
+200 
+201 		while (1) {
+202 			u_get_char(str, &s, &u);
+203 			if (u == 0)
+204 				break;
+205 			u_set_char(buf, &d, u);
+206 		}
+207 	}
+208 	*idx = d;
+209 }
+210 
+211 static void print(char *str, const char *format, const struct format_option *fopts)"
+8,"123 	*iptr = i + 1;
+124 }
+125 
+126 static int mad_read_comments(struct input_plugin_data *ip_data,
+127 		struct keyval **comments)
+128 {
+129 	ID3 *id3;
+130 	struct keyval *c;
+131 	int fd, rc, save, i;
+132 
+133 	fd = open(ip_data->filename, O_RDONLY);
+134 	if (fd == -1) {
+135 		return -1;
+136 	}
+137 
+138 	id3 = id3_new();
+139 	rc = id3_read_tags(id3, fd, ID3_V1 | ID3_V2);
+140 	save = errno;
+141 	close(fd);
+142 	errno = save;
+143 	if (rc) {
+144 		if (rc == -1) {
+145 			d_print(""error: %s\n"", strerror(errno));
+146 			return -1;
+147 		}
+148 		d_print(""corrupted tag?\n"");
+149 		*comments = xnew0(struct keyval, 1);
+150 		return 0;
+151 	}
+152 
+153 	c = xnew0(struct keyval, NUM_ID3_KEYS + 1);
+154 	i = 0;
+155 	get_comment(c, &i, id3, ID3_ARTIST, ""artist"");
+156 	get_comment(c, &i, id3, ID3_ALBUM, ""album"");
+157 	get_comment(c, &i, id3, ID3_TITLE, ""title"");
+158 	get_comment(c, &i, id3, ID3_DATE, ""date"");
+159 	get_comment(c, &i, id3, ID3_GENRE, ""genre"");
+160 	get_comment(c, &i, id3, ID3_DISC, ""discnumber"");
+161 	get_comment(c, &i, id3, ID3_TRACK, ""tracknumber"");
+162 	*comments = c;
+163 	id3_free(id3);
+164 	return 0;
+165 }
+166 
+167 static int mad_duration(struct input_plugin_data *ip_data)"

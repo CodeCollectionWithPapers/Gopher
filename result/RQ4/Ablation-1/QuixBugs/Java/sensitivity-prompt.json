@@ -1,0 +1,7 @@
+{
+  "KHEAPSORT": {
+    "action": "replace",
+    "patch": "for (Integer x : arr.subList(k+1, arr.size())) {",
+    "location": "8"
+  }
+}

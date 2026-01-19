@@ -1,0 +1,17 @@
+{
+  "HANOI": {
+    "action": "replace",
+    "patch": "steps.add(new Pair<Integer,Integer>(start-1, end));",
+    "location": "13"
+  },
+  "IS_VALID_PARENTHESIZATION": {
+    "action": "replace",
+    "patch": "return depth != 0;",
+    "location": "12"
+  },
+  "TO_BASE": {
+    "action": "replace",
+    "patch": "result = String.valueOf(alphabet.charAt(i));",
+    "location": "8"
+  }
+}

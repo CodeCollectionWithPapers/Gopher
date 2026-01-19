@@ -1,0 +1,107 @@
+﻿bug_id,patch,repair_action
+Chart_1,"replace
+if (dataset == null) { 
+7",replace
+Chart_11,"replace
+PathIterator iterator2 = p2.getPathIterator(null); 
+12",replace
+Chart_24,"replace
+int g = (int) ((v - this.lowerBound) / (this.upperBound 
+4",replace
+Chart_8,"replace
+this(time, zone, Locale.getDefault());
+12",replace
+Chart_9,"replace
+if ( endIndex < 0 || startIndex > endIndex ) {
+16",replace
+Cli_28,"replace
+continue; 
+39",replace
+Cli_31,"replace
+argName = null; 
+4",replace
+Closure_10,"replace
+return anyResultsMatch(n, MAY_BE_STRING_PREDICATE);
+3",replace
+Closure_13,"replace
+Node next = c.getNext();
+traverse(c);
+14",replace
+Closure_148,"replace
+out.append(""]\n"");
+26",replace
+Closure_86,"replace
+return false; 
+42",replace
+Codec_18,"replace
+return cs1.length() == cs2.length() && CharSequenceUtils.regionMatches(cs1, false, 0, cs2, 0, cs1.length()); 
+11",replace
+Compress_42,"replace
+return (getUnixMode() & UnixStat.FILE_TYPE_FLAG) == UnixStat.LINK_FLAG;
+2",replace
+JacksonCore_5,"replace
+char c = str.charAt(i); 
+9",replace
+JacksonDatabind_16,"replace
+ return (previous == null) || !previous.equals(ann); 
+6",replace
+JacksonDatabind_34,"replace 
+visitFloatFormat(visitor, typeHint, JsonParser.NumberType.BIG_DECIMAL); 
+9",replace
+JacksonDatabind_46,"replace
+ sb.append("">;""); 
+7",replace
+JacksonDatabind_70,"replace
+found = key.equals(_hashArea[i-1]);
+15",replace
+JacksonDatabind_97,"replace
+ctxt.defaultSerializeValue(_value, gen);
+11",replace
+Jsoup_83,"replace
+if (c == '\t'|| c ==  '\n'|| c ==  '\r'|| c ==  '\f'|| c ==  ' '|| c ==  '/'|| c ==  '>'|| c ==  TokeniserState.nullChar || c == '<')
+11",replace
+Lang_21,"replace
+cal1.get(Calendar.HOUR_OF_DAY) == cal2.get(Calendar.HOUR_OF_DAY) &&
+9",replace
+Lang_24,"replace
+return foundDigit && !hasExp && !hasDecPoint;
+83",replace
+Lang_29,"replace
+static int toJavaVersionInt(String version) {
+1",replace
+Lang_33,"replace
+classes[i] = array[i] == null ? null : array[i].getClass();
+9",replace
+Math_11,"replace
+return FastMath.pow(2 * FastMath.PI, -0.5 * dim) *
+7",replace
+Math_34,"replace
+return getChromosomes().iterator();
+2",replace
+Math_41,"replace
+for (int i = begin; i < begin + length; i++) {
+20",replace
+Math_62,"replace
+return optimize(f, goal, min, max, min +  (max - min)/2.0);
+5",replace
+Math_65,"replace
+chiSquare += residual * residual * residualsWeights[i];
+5",replace
+Math_70,"replace
+return solve(f, min, max);
+3",replace
+Math_75,"replace
+return getPct((Comparable<?>) v);
+2",replace
+Math_77,"replace
+max = Math.max(max, Math.abs(a));
+5",replace
+Math_82,"replace
+if (MathUtils.compareTo(entry, 0, epsilon) > 0) {
+7",replace
+Mockito_38,"replace
+return StringDescription.toString(m).equals(String.valueOf(arg));
+2",replace
+Mockito_5,"replace
+catch (AssertionError e) {
+17",replace

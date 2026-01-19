@@ -1,0 +1,17 @@
+{
+  "bitcount": {
+    "action": "replace",
+    "patch": "n = n - 1",
+    "location": "4"
+  },
+  "next_palindrome": {
+    "action": "replace",
+    "patch": "return [1] + (len(digit_list) - 1) * [0]",
+    "location": "15"
+  },
+  "pascal": {
+    "action": "replace",
+    "patch": "for c in range(0, r):",
+    "location": "5"
+  }
+}

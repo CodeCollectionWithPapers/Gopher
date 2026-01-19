@@ -1,0 +1,421 @@
+﻿bug_id,patch
+Chart_1,"public LegendItemCollection getLegendItems() {
+        LegendItemCollection result = new LegendItemCollection();
+        if (this.plot == null) {
+            return result;
+        }
+        int index = this.plot.getIndexOf(this);
+        CategoryDataset dataset = this.plot.getDataset(index);
+        if (dataset == null) {
+            return result;
+        }
+        int seriesCount = dataset.getRowCount();
+        if (plot.getRowRenderingOrder().equals(SortOrder.ASCENDING)) {
+            for (int i = 0; i < seriesCount; i++) {
+                if (isSeriesVisibleInLegend(i)) {
+                    LegendItem item = getLegendItem(index, i);
+                    if (item != null) {
+                        result.add(item);
+                    }
+                }
+            }
+        }
+        else {
+            for (int i = seriesCount - 1; i >= 0; i--) {
+                if (isSeriesVisibleInLegend(i)) {
+                    LegendItem item = getLegendItem(index, i);
+                    if (item != null) {
+                        result.add(item);
+                    }
+                }
+            }
+        }
+        return result;
+    }"
+Chart_11,"public static boolean equal(GeneralPath p1, GeneralPath p2) {
+        if (p1 == null) {
+            return (p2 == null);
+        }
+        if (p2 == null) {
+            return false;
+        }
+        if (p1.getWindingRule() != p2.getWindingRule()) {
+            return false;
+        }
+        PathIterator iterator1 = p1.getPathIterator(null);
+        PathIterator iterator2 = p2.getPathIterator(null);
+        double[] d1 = new double[6];
+        double[] d2 = new double[6];
+        boolean done = iterator1.isDone() && iterator2.isDone();
+        while (!done) {
+            if (iterator1.isDone() != iterator2.isDone()) {
+                return false;
+            }
+            int seg1 = iterator1.currentSegment(d1);
+            int seg2 = iterator2.currentSegment(d2);
+            if (seg1 != seg2) {
+                return false;
+            }
+            if (!Arrays.equals(d1, d2)) {
+                return false;
+            }
+            iterator1.next();
+            iterator2.next();
+            done = iterator1.isDone() && iterator2.isDone();
+        }
+        return true;
+    }"
+Chart_20,"/**
+     * Creates a new value marker.
+     * 
+     * @param value  the value.
+     * @param paint  the paint (<code>null</code> not permitted).
+     * @param stroke  the stroke (<code>null</code> not permitted).
+     * @param outlinePaint  the outline paint (<code>null</code> permitted).
+     * @param outlineStroke  the outline stroke (<code>null</code> permitted).
+     * @param alpha  the alpha transparency (in the range 0.0f to 1.0f).
+     */
+    public ValueMarker(double value, Paint paint, Stroke stroke, 
+                       Paint outlinePaint, Stroke outlineStroke, float alpha) {
+        super(paint, stroke, outlinePaint, outlineStroke, alpha);
+        this.value = value;
+    }"
+Cli_8,"protected StringBuffer renderWrappedText(StringBuffer sb, int width, 
+                                             int nextLineTabStop, String text)
+    {
+        int pos = findWrapPos(text, width, 0);
+
+        if (pos == -1)
+        {
+            sb.append(rtrim(text));
+
+            return sb;
+        }
+        sb.append(rtrim(text.substring(0, pos))).append(defaultNewLine);
+
+        // all following lines must be padded with nextLineTabStop space 
+        // characters
+        final String padding = createPadding(nextLineTabStop);
+
+        while (true)
+        {
+            text = padding + text.substring(pos).trim();
+            pos = findWrapPos(text, width, 0);
+
+            if (pos == -1)
+            {
+                sb.append(text);
+
+                return sb;
+            }
+
+            sb.append(rtrim(text.substring(0, pos))).append(defaultNewLine);
+        }
+    }"
+Closure_167,"private FlowScope maybeRestrictName(
+      FlowScope blindScope, Node node, JSType originalType, JSType restrictedType) {
+    if (restrictedType != null && restrictedType != originalType) {
+      FlowScope informed = blindScope.createChildFlowScope();
+      declareNameInScope(informed, node, restrictedType);
+      return informed;
+    }
+    return blindScope;
+  }"
+Closure_52,"static boolean isSimpleNumber(String s) {
+    int len = s.length();
+    for (int index = 0; index < len; index++) {
+      char c = s.charAt(index);
+      if (c < '0' || c > '9') {
+        return false;
+      }
+    }
+    return len > 0 && s.charAt(0) != '0';
+  }"
+Closure_57,"private static String extractClassNameIfGoog(Node node, Node parent,
+      String functionName){
+    String className = null;
+    if (NodeUtil.isExprCall(parent)) {
+      Node callee = node.getFirstChild();
+      if (callee != null && callee.getType() == Token.GETPROP) {
+        String qualifiedName = callee.getQualifiedName();
+        if (functionName.equals(qualifiedName)) {
+          Node target = callee.getNext();
+          if (target != null && target.getType() == Token.STRING) {
+            className = target.getString();
+          }
+        }
+      }
+    }
+    return className;
+  }"
+Closure_70,"private void declareArguments(Node functionNode) {
+      Node astParameters = functionNode.getFirstChild().getNext();
+      Node body = astParameters.getNext();
+      FunctionType functionType = (FunctionType) functionNode.getJSType();
+      if (functionType != null) {
+        Node jsDocParameters = functionType.getParametersNode();
+        if (jsDocParameters != null) {
+          Node jsDocParameter = jsDocParameters.getFirstChild();
+          for (Node astParameter : astParameters.children()) {
+            if (jsDocParameter != null) {
+              defineSlot(astParameter, functionNode,
+                  jsDocParameter.getJSType(), false);
+              jsDocParameter = jsDocParameter.getNext();
+            } else {
+              defineSlot(astParameter, functionNode, null, true);
+            }
+          }
+        }
+      }
+    } // end declareArguments"
+Closure_9,"private void visitScript(NodeTraversal t, Node script) {
+      Preconditions.checkArgument(scriptNodeCount == 1,
+          ""ProcessCommonJSModules supports only one invocation per "" +
+          ""CompilerInput / script node"");
+      String moduleName = guessCJSModuleName(script.getSourceFileName());
+      script.addChildToFront(IR.var(IR.name(moduleName), IR.objectlit())
+          .copyInformationFromForTree(script));
+      if (reportDependencies) {
+        CompilerInput ci = t.getInput();
+        ci.addProvide(moduleName);
+        JSModule m = new JSModule(moduleName);
+        m.addAndOverrideModule(ci);
+        module = m;
+      }
+      script.addChildToFront(IR.exprResult(
+          IR.call(IR.getprop(IR.name(""goog""), IR.string(""provide"")),
+              IR.string(moduleName))).copyInformationFromForTree(script));
+
+      emitOptionalModuleExportsOverride(script, moduleName);
+
+      // Rename vars to not conflict in global scope.
+      NodeTraversal.traverse(compiler, script, new SuffixVarsCallback(
+          moduleName));
+
+      compiler.reportCodeChange();
+    }"
+JacksonCore_5,"private final static int _parseIndex(String str) {
+        final int len = str.length();
+        // [Issue#133]: beware of super long indexes; assume we never
+        // have arrays over 2 billion entries so ints are fine.
+        if (len == 0 || len > 10) {
+            return -1;
+        }
+        for (int i = 0; i < len; ++i) {
+            char c = str.charAt(i);
+            if (c > '9' || c < '0') {
+                return -1;
+            }
+        }
+        if (len == 10) {
+            long l = NumberInput.parseLong(str);
+            if (l > Integer.MAX_VALUE) {
+                return -1;
+            }
+        }
+        return NumberInput.parseInt(str);
+    }"
+JacksonDatabind_16,"protected final boolean _add(Annotation ann) {
+        if (_annotations == null) {
+            _annotations = new HashMap<Class<? extends Annotation>,Annotation>();
+        }
+        Annotation previous = _annotations.put(ann.annotationType(), ann);
+        return (previous == null) || !previous.equals(ann);
+    }"
+JacksonDatabind_34,"@Override
+    public void acceptJsonFormatVisitor(JsonFormatVisitorWrapper visitor, JavaType typeHint) throws JsonMappingException
+    {
+        if (_isInt) {
+            visitIntFormat(visitor, typeHint, JsonParser.NumberType.BIG_INTEGER);
+        } else {
+            Class<?> h = handledType();
+            if (h == BigDecimal.class) {
+                visitFloatFormat(visitor, typeHint, JsonParser.NumberType.BIG_DECIMAL);
+            } else {
+                // otherwise bit unclear what to call... but let's try:
+                /*JsonNumberFormatVisitor v2 =*/ visitor.expectNumberFormat(typeHint);
+            }
+        }
+    }"
+JacksonDatabind_57,"public <T> MappingIterator<T> readValues(byte[] src, int offset, int length)
+        throws IOException, JsonProcessingException
+    {
+        if (_dataFormatReaders != null) {
+            return _detectBindAndReadValues(_dataFormatReaders.findFormat(src, offset, length), false);
+        }
+        return _bindAndReadValues(_considerFilter(_parserFactory.createParser(src, offset, length),
+                true));
+    }"
+JacksonDatabind_65,"@Override
+    public Method findFactoryMethod(Class<?>... expArgTypes)
+    {
+        // So, of all single-arg static methods:
+        for (AnnotatedMethod am : _classInfo.getStaticMethods()) {
+            // 24-Oct-2016, tatu: Better ensure it only takes 1 arg, no matter what
+            if (isFactoryMethod(am) && am.getParameterCount() == 1) {
+                // And must take one of expected arg types (or supertype)
+                Class<?> actualArgType = am.getRawParameterType(0);
+                for (Class<?> expArgType : expArgTypes) {
+                    // And one that matches what we would pass in
+                    if (actualArgType.isAssignableFrom(expArgType)) {
+                        return am.getAnnotated();
+                    }
+                }
+            }
+        }
+        return null;
+    }"
+Lang_15,"private static Map<TypeVariable<?>, Type> getTypeArguments(Class<?> cls, Class<?> toClass,
+            Map<TypeVariable<?>, Type> subtypeVarAssigns) {
+        if (!isAssignable(cls, toClass)) {
+            return null;
+        }
+        if (cls.isPrimitive()) {
+            // both classes are primitives?
+            if (toClass.isPrimitive()) {
+                // dealing with widening here. No type arguments to be
+                // harvested with these two types.
+                return new HashMap<TypeVariable<?>, Type>();
+            }
+            cls = ClassUtils.primitiveToWrapper(cls);
+        }
+
+        // create a copy of the incoming map, or an empty one if it's null
+        HashMap<TypeVariable<?>, Type> typeVarAssigns = subtypeVarAssigns == null ? new HashMap<TypeVariable<?>, Type>()
+                : new HashMap<TypeVariable<?>, Type>(subtypeVarAssigns);
+
+        // has target class been reached?
+        if (toClass.equals(cls)) {
+            return typeVarAssigns;
+        }
+        // walk the inheritance hierarchy until the target class is reached
+        return getTypeArguments(getClosestParentType(cls, toClass), toClass, typeVarAssigns);
+    }"
+Lang_21,"public static boolean isSameLocalTime(Calendar cal1, Calendar cal2) {
+        if (cal1 == null || cal2 == null) {
+            throw new IllegalArgumentException(""The date must not be null"");
+        }
+        return (cal1.get(Calendar.MILLISECOND) == cal2.get(Calendar.MILLISECOND) &&
+                cal1.get(Calendar.SECOND) == cal2.get(Calendar.SECOND) &&
+                cal1.get(Calendar.MINUTE) == cal2.get(Calendar.MINUTE) &&
+                cal1.get(Calendar.HOUR_OF_DAY) == cal2.get(Calendar.HOUR_OF_DAY) &&
+                cal1.get(Calendar.DAY_OF_YEAR) == cal2.get(Calendar.DAY_OF_YEAR) &&
+                cal1.get(Calendar.YEAR) == cal2.get(Calendar.YEAR) &&
+                cal1.get(Calendar.ERA) == cal2.get(Calendar.ERA) &&
+                cal1.getClass() == cal2.getClass());
+    }"
+Lang_4,"@Override
+    public int translate(final CharSequence input, final int index, final Writer out) throws IOException {
+        int max = longest;
+        if (index + longest > input.length()) {
+            max = input.length() - index;
+        }
+        // descend so as to get a greedy algorithm
+        for (int i = max; i >= shortest; i--) {
+            final CharSequence subSeq = input.subSequence(index, index + i);
+            final CharSequence result = lookupMap.get(subSeq.toString());
+            if (result != null) {
+                out.write(result.toString());
+                return i;
+            }
+        }
+        return 0;
+    }"
+Math_11,"public double density(final double[] vals) throws DimensionMismatchException {
+        final int dim = getDimension();
+        if (vals.length != dim) {
+            throw new DimensionMismatchException(vals.length, dim);
+        }
+
+        return FastMath.pow(2 * FastMath.PI, -0.5 * dim) *
+            FastMath.pow(covarianceMatrixDeterminant, -0.5) *
+            getExponentTerm(vals);
+    }"
+Math_30,"private double calculateAsymptoticPValue(final double Umin,
+                                             final int n1,
+                                             final int n2)
+        throws ConvergenceException, MaxCountExceededException {
+
+        final double n1n2prod = n1 * n2;
+
+        // http://en.wikipedia.org/wiki/Mann%E2%80%93Whitney_U#Normal_approximation
+        final double EU = n1n2prod / 2.0;
+        final double VarU = n1n2prod * (n1 + n2 + 1) / 12.0;
+
+        final double z = (Umin - EU) / FastMath.sqrt(VarU);
+
+        final NormalDistribution standardNormal = new NormalDistribution(0, 1);
+
+        return 2 * standardNormal.cumulativeProbability(z);
+    }"
+Math_57,"private static <T extends Clusterable<T>> List<Cluster<T>>
+        chooseInitialCenters(final Collection<T> points, final int k, final Random random) {
+
+        final List<T> pointSet = new ArrayList<T>(points);
+        final List<Cluster<T>> resultSet = new ArrayList<Cluster<T>>();
+
+        // Choose one center uniformly at random from among the data points.
+        final T firstPoint = pointSet.remove(random.nextInt(pointSet.size()));
+        resultSet.add(new Cluster<T>(firstPoint));
+
+        final double[] dx2 = new double[pointSet.size()];
+        while (resultSet.size() < k) {
+            // For each data point x, compute D(x), the distance between x and
+            // the nearest center that has already been chosen.
+            double sum = 0;
+            for (int i = 0; i < pointSet.size(); i++) {
+                final T p = pointSet.get(i);
+                final Cluster<T> nearest = getNearestCluster(resultSet, p);
+                final double d = p.distanceFrom(nearest.getCenter());
+                sum += d * d;
+                dx2[i] = sum;
+            }
+
+            // Add one new data point as a center. Each point x is chosen with
+            // probability proportional to D(x)2
+            final double r = random.nextDouble() * sum;
+            for (int i = 0 ; i < dx2.length; i++) {
+                if (dx2[i] >= r) {
+                    final T p = pointSet.remove(i);
+                    resultSet.add(new Cluster<T>(p));
+                    break;
+                }
+            }
+        }
+
+        return resultSet;
+
+    }"
+Math_77,"@Override
+    public double getLInfNorm() {
+        double max = 0;
+        for (double a : data) {
+            max = Math.max(max, Math.abs(a));
+        }
+        return max;
+    }"
+Mockito_5,"public void verify(VerificationData data) {
+        AssertionError error = null;
+
+        timer.start();
+        while (timer.isCounting()) {
+            try {
+                delegate.verify(data);
+
+                if (returnOnSuccess) {
+                    return;
+                } else {
+                    error = null;
+                }
+            } catch (MockitoAssertionError e) {
+                error = handleVerifyException(e);
+            }
+            catch (AssertionError e) {
+                error = handleVerifyException(e);
+            }
+        }
+
+        if (error != null) {
+            throw error;
+        }
+    }"

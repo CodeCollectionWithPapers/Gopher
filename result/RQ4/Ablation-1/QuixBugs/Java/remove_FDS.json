@@ -1,0 +1,17 @@
+{
+  "FIND_IN_SORTED": {
+    "action": "replace",
+    "patch": "return binsearch(arr, x, mid, end);",
+    "location": "9"
+  },
+  "HANOI": {
+    "action": "replace",
+    "patch": "steps.add(new Pair<Integer,Integer>(start+1, end));",
+    "location": "13"
+  },
+  "TO_BASE": {
+    "action": "replace",
+    "patch": "result = String.valueOf(alphabet.charAt(i));",
+    "location": "8"
+  }
+}

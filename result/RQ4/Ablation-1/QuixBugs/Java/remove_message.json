@@ -1,0 +1,7 @@
+{
+  "HANOI": {
+    "action": "replace",
+    "patch": "tmp = new Pair<Integer,Integer>(start, end);",
+    "location": "13"
+  }
+}

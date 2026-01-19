@@ -1,0 +1,21 @@
+Using generator for language: JAVASRC: JavaSrcCpgGenerator
+Creating project `_Defects4J1.2` for code at `P:\Defects4J_java\1.2`
+=======================================================================================================
+Invoking CPG generator in a separate process. Note that the new process will consume additional memory.
+If you are importing a large codebase (and/or running into memory issues), please try the following:
+1) exit joern
+2) invoke the frontend: P:\joern-cli\javasrc2cpg.bat -J-Xmx8142m P:\Defects4J_java\1.2 --output C:\Users\Noah\workspace\_Defects4J1.2\cpg.bin.zip
+3) start joern, import the cpg: `importCpg("path/to/cpg")`
+=======================================================================================================
+
+moving cpg.bin.zip to cpg.bin because it is already a database file
+Creating working copy of CPG to be safe
+Loading base CPG from: C:\Users\Noah\workspace\_Defects4J1.2\cpg.bin.tmp
+Code successfully imported. You can now query it using `cpg`.
+For an overview of all imported code, type `workspace`.
+Adding default overlays to base CPG
+2025-07-27 14:26:21.771 WARN CdgPass: Found CDG edge starting at BLOCK node io.shiftleft.codepropertygraph.generated.nodes.Return[label=RETURN; seq=12247; id=146028900311] <-> io.shiftleft.codepropertygraph.generated.nodes.Block[label=BLOCK; seq=32011; id=25769835787]. This is most likely caused by an invalid CFG. Method: io.shiftleft.codepropertygraph.generated.nodes.Method[label=METHOD; seq=8937; id=111669158633] number of outgoing CFG edges from BLOCK node: 2
+The graph has been modified. You may want to use the `save` command to persist changes to disk.  All changes will also be saved collectively on exit
+The graph has been modified. You may want to use the `save` command to persist changes to disk.  All changes will also be saved collectively on exit
+val res0: io.shiftleft.codepropertygraph.generated.Cpg = Cpg[Graph[663776 nodes]]
+

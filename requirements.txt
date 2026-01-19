@@ -1,0 +1,16 @@
+# Gopher APR - Project Dependencies
+pyyaml==6.0.1
+requests==2.31.0
+urllib3==2.0.0
+tiktoken==0.7.0
+jinja2==3.1.4
+docker==7.1.0
+python-dotenv==1.0.1
+tqdm==4.66.0
+mypy==1.10.0
+flake8==7.0.0
+black==24.4.2
+isort==5.13.2
+pytest==8.2.0
+pandas==2.2.0
+numpy==1.26.0

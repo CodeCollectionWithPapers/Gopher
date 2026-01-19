@@ -1,0 +1,306 @@
+﻿bug_id,patch
+bitcount,"def bitcount(n):
+    count = 0
+    while n:
+        n &= n - 1
+        count += 1
+    return count"
+bucketsort,"def bucketsort(arr, k):
+    counts = [0] * k
+    for x in arr:
+        counts[x] += 1
+
+    sorted_arr = []
+    for i, count in enumerate(counts):
+        sorted_arr.extend([i] * count)
+
+    return sorted_arr"
+depth_first_search,"def depth_first_search(startnode, goalnode):
+    nodesvisited = set()
+
+    def search_from(node):
+        if node in nodesvisited:
+            return False
+        elif node is goalnode:
+            return True
+        else:
+            nodesvisited.add(node)
+            return any(
+                search_from(nextnode) for nextnode in node.successors
+            )
+
+    return search_from(startnode)"
+detect_cycle,"def detect_cycle(node):
+    hare = tortoise = node
+
+    while True:
+        if hare is None or hare.successor is None:
+            return False
+
+        tortoise = tortoise.successor
+        hare = hare.successor.successor
+
+        if hare is tortoise:
+            return True"
+flatten,"def flatten(arr):
+    for x in arr:
+        if isinstance(x, list):
+            for y in flatten(x):
+                yield y
+        else:
+            yield x"
+gcd,"def gcd(a, b):
+    if b == 0:
+        return a
+    else:
+        return gcd(b, a % b)"
+get_factors,"def get_factors(n):
+    if n == 1:
+        return []
+
+    for i in range(2, int(n ** 0.5) + 1):
+        if n % i == 0:
+            return [i] + get_factors(n // i)
+
+    return [n]"
+hanoi,"def hanoi(height, start=1, end=3):
+    steps = []
+    if height > 0:
+        helper = ({1, 2, 3} - {start} - {end}).pop()
+        steps.extend(hanoi(height - 1, start, helper))
+        steps.append((start, end))
+        steps.extend(hanoi(height - 1, helper, end))
+
+    return steps"
+kheapsort,"def kheapsort(arr, k):
+    import heapq
+
+    heap = arr[:k]
+    heapq.heapify(heap)
+
+    for x in arr[k:]:
+        yield heapq.heappushpop(heap, x)
+
+    while heap:
+        yield heapq.heappop(heap)"
+kth,"def kth(arr, k):
+    pivot = arr[0]
+    below = [x for x in arr if x < pivot]
+    above = [x for x in arr if x > pivot]
+
+    num_less = len(below)
+    num_lessoreq = len(arr) - len(above)
+
+    if k < num_less:
+        return kth(below, k)
+    elif k >= num_lessoreq:
+        return kth(above, k - num_lessoreq)
+    else:
+        return pivot"
+levenshtein,"def levenshtein(source, target):
+    if source == '' or target == '':
+        return len(source) or len(target)
+
+    elif source[0] == target[0]:
+        return levenshtein(source[1:], target[1:])
+
+    else:
+        return 1 + min(
+            levenshtein(source,     target[1:]),
+            levenshtein(source[1:], target[1:]),
+            levenshtein(source[1:], target)
+        )"
+lis,"def lis(arr):
+    ends = {}
+    longest = 0
+
+    for i, val in enumerate(arr):
+
+        prefix_lengths = [j for j in range(1, longest + 1) if arr[ends[j]] < val]
+
+        length = max(prefix_lengths) if prefix_lengths else 0
+
+        if length == longest or val < arr[ends[length + 1]]:
+            ends[length + 1] = i
+            longest = max(longest, length + 1)
+
+    return longest"
+mergesort,"def mergesort(arr):
+    def merge(left, right):
+        result = []
+        i = 0
+        j = 0
+        while i < len(left) and j < len(right):
+            if left[i] <= right[j]:
+                result.append(left[i])
+                i += 1
+            else:
+                result.append(right[j])
+                j += 1
+        result.extend(left[i:] or right[j:])
+        return result
+
+    if len(arr) <= 1:
+        return arr
+    else:
+        middle = len(arr) // 2
+        left = mergesort(arr[:middle])
+        right = mergesort(arr[middle:])
+        return merge(left, right)"
+minimum_spanning_tree,"def minimum_spanning_tree(weight_by_edge):
+    group_by_node = {}
+    mst_edges = set()
+
+    for edge in sorted(weight_by_edge, key=weight_by_edge.__getitem__):
+        u, v = edge
+        if group_by_node.setdefault(u, {u}) != group_by_node.setdefault(v, {v}):
+            mst_edges.add(edge)
+            group_by_node[u].update(group_by_node[v])
+            for node in group_by_node[v]:
+                group_by_node[node] = group_by_node[u]
+
+    return mst_edges"
+next_palindrome,"def next_palindrome(digit_list):
+    high_mid = len(digit_list) // 2
+    low_mid = (len(digit_list) - 1) // 2
+    while high_mid < len(digit_list) and low_mid >= 0:
+        if digit_list[high_mid] == 9:
+            digit_list[high_mid] = 0
+            digit_list[low_mid] = 0
+            high_mid += 1
+            low_mid -= 1
+        else:
+            digit_list[high_mid] += 1
+            if low_mid != high_mid:
+                digit_list[low_mid] += 1
+            return digit_list
+    return [1] + (len(digit_list) - 1) * [0] + [1]"
+pascal,"def pascal(n):
+    rows = [[1]]
+    for r in range(1, n):
+        row = []
+        for c in range(0, r + 1):
+            upleft = rows[r - 1][c - 1] if c > 0 else 0
+            upright = rows[r - 1][c] if c < r else 0
+            row.append(upleft + upright)
+        rows.append(row)
+
+    return rows"
+possible_change,"def possible_change(coins, total):
+    if total == 0:
+        return 1
+    if total < 0 or not coins:
+        return 0
+
+    first, *rest = coins
+    return possible_change(coins, total - first) + possible_change(rest, total)"
+powerset,"def powerset(arr):
+    if arr:
+        first, *rest = arr
+        rest_subsets = powerset(rest)
+        return rest_subsets + [[first] + subset for subset in rest_subsets]
+    else:
+        return [[]]"
+quicksort,"def quicksort(arr):
+    if not arr:
+        return []
+
+    pivot = arr[0]
+    lesser = quicksort([x for x in arr[1:] if x < pivot])
+    greater = quicksort([x for x in arr[1:] if x >= pivot])
+    return lesser + [pivot] + greater"
+reverse_linked_list,"def reverse_linked_list(node):
+    prevnode = None
+    while node:
+        nextnode = node.successor
+        node.successor = prevnode
+        prevnode = node
+        node = nextnode
+    return prevnode"
+rpn_eval,"def rpn_eval(tokens):
+    def op(symbol, a, b):
+        return {
+            '+': lambda a, b: a + b,
+            '-': lambda a, b: a - b,
+            '*': lambda a, b: a * b,
+            '/': lambda a, b: a / b
+        }[symbol](a, b)
+
+    stack = []
+
+    for token in tokens:
+        if isinstance(token, float):
+            stack.append(token)
+        else:
+            a = stack.pop()
+            b = stack.pop()
+            stack.append(op(token, b, a))
+
+    return stack.pop()"
+shortest_paths,"def shortest_paths(source, weight_by_edge):
+    weight_by_node = {
+        v: float('inf') for u, v in weight_by_edge
+    }
+    weight_by_node[source] = 0
+
+    for i in range(len(weight_by_node) - 1):
+        for (u, v), weight in weight_by_edge.items():
+            weight_by_node[v] = min(
+                weight_by_node[u] + weight,
+                weight_by_node[v]
+            )
+
+    return weight_by_node"
+shunting_yard,"def shunting_yard(tokens):
+    precedence = {
+        '+': 1,
+        '-': 1,
+        '*': 2,
+        '/': 2
+    }
+
+    rpntokens = []
+    opstack = []
+    for token in tokens:
+        if isinstance(token, int):
+            rpntokens.append(token)
+        else:
+            while opstack and precedence[token] <= precedence[opstack[-1]]:
+                rpntokens.append(opstack.pop())
+            opstack.append(token)
+
+    while opstack:
+        rpntokens.append(opstack.pop())
+
+    return rpntokens"
+sieve,"def sieve(max):
+    primes = []
+    for n in range(2, max + 1):
+        if all(n % p > 0 for p in primes):
+            primes.append(n)
+    return primes"
+sqrt,"def sqrt(x, epsilon):
+    approx = x / 2
+    while abs(x - approx ** 2) > epsilon:
+        approx = 0.5 * (approx + x / approx)
+    return approx"
+subsequences,"def subsequences(a, b, k):
+    if k == 0:
+        return [[]]
+
+    ret = []
+    for i in range(a, b + 1 - k):
+        ret.extend(
+            [i] + rest for rest in subsequences(i + 1, b, k - 1)
+        )
+
+    return ret"
+to_base,"import string
+def to_base(num, b):
+    result = ''
+    alphabet = string.digits + string.ascii_uppercase
+    while num > 0:
+        i = num % b
+        num = num // b
+        result = alphabet[i] + result
+    return result"

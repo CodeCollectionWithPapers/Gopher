@@ -1,0 +1,158 @@
+﻿bug_id,patch,repair_action
+Chart_1,"replace
+if (dataset == null) { 
+8",replace
+Chart_10,"replace
+return "" title=\"""" + ImageMapUtilities.htmlEscape(toolTipText) 
+2",replace
+Chart_11,"replace
+PathIterator iterator2 = p2.getPathIterator(null);
+12",replace
+Chart_13,"replace
+new Range(0.0, Math.max(constraint.getWidth() - w[2], 0.0)),
+34",replace
+Chart_20,"replace
+super(paint, stroke, outlinePaint, outlineStroke, alpha);
+13",replace
+Chart_5,"add,replace
+ if (this.allowDuplicateXValues) {            
+   add(x, y);            
+   return null;            
+ }
+if (index >= 0) {
+5
+8","add,replace"
+Cli_18,"add
+tokens.add(token);
+31",add
+Cli_28,"replace
+continue; 
+39",replace
+Cli_31,"replace
+argName = null; 
+4",replace
+Cli_34,"replace
+type = String.class; 
+6",replace
+Closure_11,"delete
+else if (n.getJSType() != null && parent.isAssign()) {
+  return;
+20",delete
+Closure_168,"replace
+if (t.getScopeDepth() <= 1) { 
+10",replace
+Closure_30,"replace
+(new NodeTraversal(compiler, this)).traverseRoots(externs, root);
+2",replace
+Closure_33,"add
+if (hasReferenceName()) {
+   return;
+}
+9",add
+Closure_52,"replace
+return len > 0 && (len == 1 || s.charAt(0) != '0');
+9",replace
+Closure_89,"replace
+if (aliasingGets > 0) {
+25",replace
+Closure_9,"replace
+String moduleName = guessCJSModuleName(script.getSourceFileName());
+5",replace
+Codec_10,"replace
+txt = txt.replaceAll(""mb$"", ""m2""); 
+27",replace
+Codec_17,"replace
+ return newString(bytes, Charsets.ISO_8859_1); 
+2",replace
+Codec_3,"replace
+ } else if (contains(value, index + 1, 3, ""IER"")) { 
+38",replace
+Compress_23,"replace
+dictSize |= (coder.properties[i + 1] & 0xffl) << (8 * i);
+8",replace
+Compress_32,"replace
+currEntry.setGroupId(Long.parseLong(val));
+currEntry.setUserId(Long.parseLong(val));
+21
+25",replace
+Compress_42,"replace
+return (getUnixMode() & UnixStat.FILE_TYPE_FLAG) == UnixStat.LINK_FLAG;
+2",replace
+Compress_44,"delete
+if (checksum == null) {
+    throw new NullPointerException(""Parameter checksum must not be null"");
+}
+if (in == null) {
+    throw new NullPointerException(""Parameter in must not be null"");
+}",delete
+Csv_6,"replace
+if (col < values.length) {
+   map.put(entry.getKey(), values[col]);
+ }
+10",replace
+JacksonCore_14,"replace
+if ((toRelease != src) && (toRelease.length < src.length)) { throw wrongBuf(); }
+16",replace
+JacksonCore_8,"replace
+if (!_hasSegments && _currentSegment != null)  return _currentSegment;
+7",replace
+JacksonDatabind_16,"replace
+ return (previous == null) || !previous.equals(ann); 
+6",replace
+JacksonDatabind_45,"replace
+ if ((shape == JsonFormat.Shape.STRING) || format.hasPattern()  || format.hasLocale() || format.hasTimeZone()) { 
+15",replace
+JacksonDatabind_46,"replace
+ sb.append("">;""); 
+7",replace
+JacksonDatabind_70,"replace
+found = key.equals(_hashArea[i-1]);
+15",replace
+JacksonDatabind_96,"replace
+paramName = candidate.paramName(0);
+35",replace
+Jsoup_20,"add
+if (docData.length() > 0 && docData.charAt(0) == '\uFEFF') {
+    docData = docData.substring(1);
+}
+27",add
+Jsoup_41,"replace
+return this.tag.equals(element.tag);
+22",replace
+Jsoup_46,"replace
+accum.append(""&#xa0;"");
+41",replace
+Jsoup_84,"add
+Element el = namespace == null && tagName.contains("":"") ?
+                doc.createElementNS("""", tagName) : 
+11",add
+Jsoup_92,"replace
+attributes.add(pendingAttributeName, value);
+18",replace
+JxPath_16,"replace
+return true;
+5",replace
+Lang_24,"replace
+return foundDigit && !hasExp && !hasDecPoint;
+83",replace
+Lang_35,"replace
+return m != null && m.containsKey(value);
+3",replace
+Lang_57,"replace
+return availableLocaleList().contains(locale);
+2",replace
+Math_105,"replace
+return Math.max(0d, sumYY - sumXY * sumXY / sumXX);
+2",replace
+Math_63,"replace
+return equals(x, y, 1);
+2",replace
+Math_80,"replace
+int j = 4 * (n - 1);
+4",replace
+Mockito_24,"replace
+return invocation.getMock() == invocation.getArguments()[0] ? 0 : 1;
+14",replace
+Time_4,"replace
+Partial newPartial = new Partial(newTypes, newValues, iChronology);
+39",replace

@@ -1,0 +1,565 @@
+﻿bug_id,patch
+Chart_1,"public LegendItemCollection getLegendItems() {
+        LegendItemCollection result = new LegendItemCollection();
+        if (this.plot == null) {
+            return result;
+        }
+        int index = this.plot.getIndexOf(this);
+        CategoryDataset dataset = this.plot.getDataset(index);
+        if (dataset == null) {
+            return result;
+        }
+        int seriesCount = dataset.getRowCount();
+        if (plot.getRowRenderingOrder().equals(SortOrder.ASCENDING)) {
+            for (int i = 0; i < seriesCount; i++) {
+                if (isSeriesVisibleInLegend(i)) {
+                    LegendItem item = getLegendItem(index, i);
+                    if (item != null) {
+                        result.add(item);
+                    }
+                }
+            }
+        }
+        else {
+            for (int i = seriesCount - 1; i >= 0; i--) {
+                if (isSeriesVisibleInLegend(i)) {
+                    LegendItem item = getLegendItem(index, i);
+                    if (item != null) {
+                        result.add(item);
+                    }
+                }
+            }
+        }
+        return result;
+    }"
+Chart_11,"public static boolean equal(GeneralPath p1, GeneralPath p2) {
+        if (p1 == null) {
+            return (p2 == null);
+        }
+        if (p2 == null) {
+            return false;
+        }
+        if (p1.getWindingRule() != p2.getWindingRule()) {
+            return false;
+        }
+        PathIterator iterator1 = p1.getPathIterator(null);
+        PathIterator iterator2 = p2.getPathIterator(null);
+        double[] d1 = new double[6];
+        double[] d2 = new double[6];
+        boolean done = iterator1.isDone() && iterator2.isDone();
+        while (!done) {
+            if (iterator1.isDone() != iterator2.isDone()) {
+                return false;
+            }
+            int seg1 = iterator1.currentSegment(d1);
+            int seg2 = iterator2.currentSegment(d2);
+            if (seg1 != seg2) {
+                return false;
+            }
+            if (!Arrays.equals(d1, d2)) {
+                return false;
+            }
+            iterator1.next();
+            iterator2.next();
+            done = iterator1.isDone() && iterator2.isDone();
+        }
+        return true;
+    }"
+Chart_9,"public TimeSeries createCopy(RegularTimePeriod start, RegularTimePeriod end)
+        throws CloneNotSupportedException {
+
+        if (start == null) {
+            throw new IllegalArgumentException(""Null 'start' argument."");
+        }
+        if (end == null) {
+            throw new IllegalArgumentException(""Null 'end' argument."");
+        }
+        if (start.compareTo(end) > 0) {
+            throw new IllegalArgumentException(
+                    ""Requires start on or before end."");
+        }
+        boolean emptyRange = false;
+        int startIndex = getIndex(start);
+        if (startIndex < 0) {
+            startIndex = -(startIndex + 1);
+            if (startIndex == this.data.size()) {
+                emptyRange = true;  // start is after last data item
+            }
+        }
+        int endIndex = getIndex(end);
+        if (endIndex < 0) {             // end period is not in original series
+            endIndex = -(endIndex + 1); // this is first item AFTER end period
+            endIndex = endIndex - 1;    // so this is last item BEFORE end
+        }
+        if ((endIndex < 0)  || (endIndex < startIndex)) {
+            emptyRange = true;
+        }
+        if (emptyRange) {
+            TimeSeries copy = (TimeSeries) super.clone();
+            copy.data = new java.util.ArrayList();
+            return copy;
+        }
+        else {
+            return createCopy(startIndex, endIndex);
+        }
+
+    }"
+Cli_28,"protected void processProperties(Properties properties)
+    {
+        if (properties == null)
+        {
+            return;
+        }
+
+        for (Enumeration e = properties.propertyNames(); e.hasMoreElements();)
+        {
+            String option = e.nextElement().toString();
+
+            if (!cmd.hasOption(option))
+            {
+                Option opt = getOptions().getOption(option);
+
+                // get the value from the properties instance
+                String value = properties.getProperty(option);
+
+                if (opt.hasArg())
+                {
+                    if (opt.getValues() == null || opt.getValues().length == 0)
+                    {
+                        try
+                        {
+                            opt.addValueForProcessing(value);
+                        }
+                        catch (RuntimeException exp)
+                        {
+                            // if we cannot add the value don't worry about it
+                        }
+                    }
+                }
+                else if (!(""yes"".equalsIgnoreCase(value)
+                        || ""true"".equalsIgnoreCase(value)
+                        || ""1"".equalsIgnoreCase(value)))
+                {
+                    // if the value is not yes, true or 1 then don't add the
+                    // option to the CommandLine
+                    continue;
+                }
+
+                cmd.addOption(opt);
+            }
+        }
+    }"
+Closure_10,"static boolean mayBeString(Node n, boolean recurse) {
+    if (recurse) {
+      return anyResultsMatch(n, MAY_BE_STRING_PREDICATE);
+    } else {
+      return mayBeStringHelper(n);
+    }
+  }"
+Closure_148,"private void closeLine() throws IOException {
+      if (out != null) {
+        out.append(""]\n"");
+      }
+    }"
+Closure_86,"static boolean evaluatesToLocalValue(Node value, Predicate<Node> locals) {
+    switch (value.getType()) {
+      case Token.ASSIGN:
+        return NodeUtil.isImmutableValue(value.getLastChild())
+            || (locals.apply(value)
+                && evaluatesToLocalValue(value.getLastChild(), locals));
+      case Token.COMMA:
+        return evaluatesToLocalValue(value.getLastChild(), locals);
+      case Token.AND:
+      case Token.OR:
+        return evaluatesToLocalValue(value.getFirstChild(), locals)
+           && evaluatesToLocalValue(value.getLastChild(), locals);
+      case Token.HOOK:
+        return evaluatesToLocalValue(value.getFirstChild().getNext(), locals)
+           && evaluatesToLocalValue(value.getLastChild(), locals);
+      case Token.INC:
+      case Token.DEC:
+        if (value.getBooleanProp(Node.INCRDECR_PROP)) {
+          return evaluatesToLocalValue(value.getFirstChild(), locals);
+        } else {
+          return true;
+        }
+      case Token.THIS:
+        return locals.apply(value);
+      case Token.NAME:
+        return isImmutableValue(value) || locals.apply(value);
+      case Token.GETELEM:
+      case Token.GETPROP:
+        // There is no information about the locality of object properties.
+        return locals.apply(value);
+      case Token.CALL:
+        return callHasLocalResult(value)
+            || isToStringMethodCall(value)
+            || locals.apply(value);
+      case Token.NEW:
+        // TODO(nicksantos): This needs to be changed so that it
+        // returns true iff we're sure the value was never aliased from inside
+        // the constructor (similar to callHasLocalResult)
+        return false;
+      case Token.FUNCTION:
+      case Token.REGEXP:
+      case Token.ARRAYLIT:
+      case Token.OBJECTLIT:
+        // Literals objects with non-literal children are allowed.
+        return true;
+      case Token.IN:
+        // TODO(johnlenz): should IN operator be included in #isSimpleOperator?
+        return true;
+      default:
+        // Other op force a local value:
+        //  x = '' + g (x is now an local string)
+        //  x -= g (x is now an local number)
+        if (isAssignmentOp(value)
+            || isSimpleOperator(value)
+            || isImmutableValue(value)) {
+          return true;
+        }
+
+        throw new IllegalStateException(
+            ""Unexpected expression node"" + value +
+            ""\n parent:"" + value.getParent());
+    }
+  }"
+Compress_42,"public boolean isUnixSymlink() {
+        return (getUnixMode() & UnixStat.FILE_TYPE_FLAG) == UnixStat.LINK_FLAG;
+    }"
+JacksonCore_5,"private final static int _parseIndex(String str) {
+        final int len = str.length();
+        // [Issue#133]: beware of super long indexes; assume we never
+        // have arrays over 2 billion entries so ints are fine.
+        if (len == 0 || len > 10) {
+            return -1;
+        }
+        for (int i = 0; i < len; ++i) {
+            char c = str.charAt(i);
+            if (c > '9' || c < '0') {
+                return -1;
+            }
+        }
+        if (len == 10) {
+            long l = NumberInput.parseLong(str);
+            if (l > Integer.MAX_VALUE) {
+                return -1;
+            }
+        }
+        return NumberInput.parseInt(str);
+    }"
+JacksonDatabind_16,"protected final boolean _add(Annotation ann) {
+        if (_annotations == null) {
+            _annotations = new HashMap<Class<? extends Annotation>,Annotation>();
+        }
+        Annotation previous = _annotations.put(ann.annotationType(), ann);
+        return (previous == null) || !previous.equals(ann);
+    }"
+JacksonDatabind_46,"@Override
+    public StringBuilder getGenericSignature(StringBuilder sb)
+    {
+        _classSignature(_class, sb, false);
+        sb.append('<');
+        sb = _referencedType.getGenericSignature(sb);
+        sb.append("">;"");
+        return sb;
+    }"
+JacksonDatabind_70,"public void remove(SettableBeanProperty propToRm)
+    {
+        ArrayList<SettableBeanProperty> props = new ArrayList<SettableBeanProperty>(_size);
+        String key = getPropertyName(propToRm);
+        boolean found = false;
+
+        for (int i = 1, end = _hashArea.length; i < end; i += 2) {
+            SettableBeanProperty prop = (SettableBeanProperty) _hashArea[i];
+            if (prop == null) {
+                continue;
+            }
+            if (!found) {
+                // 09-Jan-2017, tatu: Important: must check name slot and NOT property name,
+                //   as only former is lower-case in case-insensitive case
+                found = key.equals(_hashArea[i-1]);
+                if (found) {
+                    // need to leave a hole here
+                    _propsInOrder[_findFromOrdered(prop)] = null;
+                    continue;
+                }
+            }
+            props.add(prop);
+        }
+        if (!found) {
+            throw new NoSuchElementException(""No entry '""+propToRm.getName()+""' found, can't remove"");
+        }
+        init(props);
+    }"
+JacksonDatabind_97,"@Override
+    public final void serialize(JsonGenerator gen, SerializerProvider ctxt) throws IOException
+    {
+        if (_value == null) {
+            ctxt.defaultSerializeNull(gen);
+        } else if (_value instanceof JsonSerializable) {
+            ((JsonSerializable) _value).serialize(gen, ctxt);
+        } else {
+            // 25-May-2018, tatu: [databind#1991] do not call via generator but through context;
+            //    this to preserve contextual information
+            ctxt.defaultSerializeValue(_value, gen);
+        }
+    }"
+Jsoup_83,"String consumeTagName() {
+        // '\t', '\n', '\r', '\f', ' ', '/', '>', nullChar
+        // NOTE: out of spec, added '<' to fix common author bugs
+        bufferUp();
+        final int start = bufPos;
+        final int remaining = bufLength;
+        final char[] val = charBuf;
+
+        while (bufPos < remaining) {
+            final char c = val[bufPos];
+            if (c == '\t'|| c ==  '\n'|| c ==  '\r'|| c ==  '\f'|| c ==  ' '|| c ==  '/'|| c ==  '>'|| c == '<' || c ==  TokeniserState.nullChar)
+                break;
+            bufPos++;
+        }
+
+        return bufPos > start ? cacheString(charBuf, stringCache, start, bufPos -start) : """";
+    }"
+Lang_21,"public static boolean isSameLocalTime(Calendar cal1, Calendar cal2) {
+        if (cal1 == null || cal2 == null) {
+            throw new IllegalArgumentException(""The date must not be null"");
+        }
+        return (cal1.get(Calendar.MILLISECOND) == cal2.get(Calendar.MILLISECOND) &&
+                cal1.get(Calendar.SECOND) == cal2.get(Calendar.SECOND) &&
+                cal1.get(Calendar.MINUTE) == cal2.get(Calendar.MINUTE) &&
+                cal1.get(Calendar.HOUR_OF_DAY) == cal2.get(Calendar.HOUR_OF_DAY) &&
+                cal1.get(Calendar.DAY_OF_YEAR) == cal2.get(Calendar.DAY_OF_YEAR) &&
+                cal1.get(Calendar.YEAR) == cal2.get(Calendar.YEAR) &&
+                cal1.get(Calendar.ERA) == cal2.get(Calendar.ERA) &&
+                cal1.getClass() == cal2.getClass());
+    }"
+Lang_24,"public static boolean isNumber(String str) {
+        if (StringUtils.isEmpty(str)) {
+            return false;
+        }
+        char[] chars = str.toCharArray();
+        int sz = chars.length;
+        boolean hasExp = false;
+        boolean hasDecPoint = false;
+        boolean allowSigns = false;
+        boolean foundDigit = false;
+        // deal with any possible sign up front
+        int start = (chars[0] == '-') ? 1 : 0;
+        if (sz > start + 1) {
+            if (chars[start] == '0' && chars[start + 1] == 'x') {
+                int i = start + 2;
+                if (i == sz) {
+                    return false; // str == ""0x""
+                }
+                // checking hex (it can't be anything else)
+                for (; i < chars.length; i++) {
+                    if ((chars[i] < '0' || chars[i] > '9')
+                        && (chars[i] < 'a' || chars[i] > 'f')
+                        && (chars[i] < 'A' || chars[i] > 'F')) {
+                        return false;
+                    }
+                }
+                return true;
+            }
+        }
+        sz--; // don't want to loop to the last char, check it afterwords
+              // for type qualifiers
+        int i = start;
+        while (i < sz || (i < sz + 1 && allowSigns && !foundDigit)) {
+            if (chars[i] >= '0' && chars[i] <= '9') {
+                foundDigit = true;
+                allowSigns = false;
+
+            } else if (chars[i] == '.') {
+                if (hasDecPoint || hasExp) {
+                    // two decimal points or dec in exponent   
+                    return false;
+                }
+                hasDecPoint = true;
+            } else if (chars[i] == 'e' || chars[i] == 'E') {
+                // we've already taken care of hex.
+                if (hasExp) {
+                    // two E's
+                    return false;
+                }
+                if (!foundDigit) {
+                    return false;
+                }
+                hasExp = true;
+                allowSigns = true;
+            } else if (chars[i] == '+' || chars[i] == '-') {
+                if (!allowSigns) {
+                    return false;
+                }
+                allowSigns = false;
+                foundDigit = false; // we need a digit after the E
+            } else {
+                return false;
+            }
+            i++;
+        }
+        if (i < chars.length) {
+            if (chars[i] >= '0' && chars[i] <= '9') {
+                // no type qualifier, OK
+                return true;
+            }
+            if (chars[i] == 'e' || chars[i] == 'E') {
+                // can't have an E at the last byte
+                return false;
+            }
+            if (chars[i] == '.') {
+                if (hasDecPoint || hasExp) {
+                    // two decimal points or dec in exponent
+                    return false;
+                }
+                return foundDigit;
+            }
+            if (!allowSigns
+                && (chars[i] == 'd'
+                    || chars[i] == 'D'
+                    || chars[i] == 'f'
+                    || chars[i] == 'F')) {
+                return foundDigit;
+            }
+            if (chars[i] == 'l'
+                || chars[i] == 'L') {
+
+                return foundDigit && !hasExp && !hasDecPoint;
+            }
+            return false;
+        }
+        return !allowSigns && foundDigit;
+    }"
+Lang_29,"static int toJavaVersionInt(String version) {
+        return toVersionInt(toJavaVersionIntArray(version, JAVA_VERSION_TRIM_SIZE));
+    }"
+Lang_33,"public static Class<?>[] toClass(Object[] array) {
+        if (array == null) {
+            return null;
+        } else if (array.length == 0) {
+            return ArrayUtils.EMPTY_CLASS_ARRAY;
+        }
+        Class<?>[] classes = new Class[array.length];
+        for (int i = 0; i < array.length; i++) {
+            classes[i] = array[i] == null ? null : array[i].getClass();
+        }
+        return classes;
+    }"
+Math_11,"public double density(final double[] vals) throws DimensionMismatchException {
+        final int dim = getDimension();
+        if (vals.length != dim) {
+            throw new DimensionMismatchException(vals.length, dim);
+        }
+
+        return FastMath.pow(2 * FastMath.PI, -0.5 * dim) *
+            FastMath.pow(covarianceMatrixDeterminant, -0.5) *
+            getExponentTerm(vals);
+    }"
+Math_34,"public Iterator<Chromosome> iterator() {
+        return getChromosomes().iterator();
+    }"
+Math_41,"public double evaluate(final double[] values, final double[] weights,
+                           final double mean, final int begin, final int length) {
+
+        double var = Double.NaN;
+
+        if (test(values, weights, begin, length)) {
+            if (length == 1) {
+                var = 0.0;
+            } else if (length > 1) {
+                double accum = 0.0;
+                double dev = 0.0;
+                double accum2 = 0.0;
+                for (int i = begin; i < begin + length; i++) {
+                    dev = values[i] - mean;
+                    accum += weights[i] * (dev * dev);
+                    accum2 += weights[i] * dev;
+                }
+
+                double sumWts = 0;
+                for (int i = begin; i < begin + length; i++) {
+                    sumWts += weights[i];
+                }
+
+                if (isBiasCorrected) {
+                    var = (accum - (accum2 * accum2 / sumWts)) / (sumWts - 1.0);
+                } else {
+                    var = (accum - (accum2 * accum2 / sumWts)) / sumWts;
+                }
+            }
+        }
+        return var;
+    }"
+Math_62,"public UnivariateRealPointValuePair optimize(final FUNC f,
+                                                 final GoalType goal,
+                                                 final double min, final double max)
+        throws FunctionEvaluationException {
+        return optimize(f, goal, min, max, min + 0.5 * (max - min));
+    }"
+Math_65,"public double getChiSquare() {
+        double chiSquare = 0;
+        for (int i = 0; i < rows; ++i) {
+            final double residual = residuals[i];
+            chiSquare += residual * residual * residualsWeights[i];
+        }
+        return chiSquare;
+    }"
+Math_70,"public double solve(final UnivariateRealFunction f, double min, double max, double initial)
+        throws MaxIterationsExceededException, FunctionEvaluationException {
+        return solve(f, min, max);
+    }"
+Math_75,"@Deprecated
+    public double getPct(Object v) {
+        return getPct((Comparable<?>) v);
+    }"
+Math_77,"@Override
+    public double getLInfNorm() {
+        double max = 0;
+        for (double a : data) {
+            max = Math.max(max, Math.abs(a));
+        }
+        return max;
+    }"
+Math_82,"private Integer getPivotRow(final int col, final SimplexTableau tableau) {
+        double minRatio = Double.MAX_VALUE;
+        Integer minRatioPos = null;
+        for (int i = tableau.getNumObjectiveFunctions(); i < tableau.getHeight(); i++) {
+            final double rhs = tableau.getEntry(i, tableau.getWidth() - 1);
+            final double entry = tableau.getEntry(i, col);
+            if (MathUtils.compareTo(entry, 0, epsilon) > 0) {
+                final double ratio = rhs / entry;
+                if (ratio < minRatio) {
+                    minRatio = ratio;
+                    minRatioPos = i; 
+                }
+            }
+        }
+        return minRatioPos;
+    }"
+Mockito_5,"public void verify(VerificationData data) {
+        AssertionError error = null;
+
+        timer.start();
+        while (timer.isCounting()) {
+            try {
+                delegate.verify(data);
+
+                if (returnOnSuccess) {
+                    return;
+                } else {
+                    error = null;
+                }
+            } catch (MockitoAssertionError e) {
+                error = handleVerifyException(e);
+            }
+            catch (AssertionError e) {
+                error = handleVerifyException(e);
+            }
+        }
+
+        if (error != null) {
+            throw error;
+        }
+    }"

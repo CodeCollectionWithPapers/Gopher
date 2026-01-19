@@ -1,0 +1,572 @@
+﻿bug_id,patch,repair_action
+Chart_1,"replace
+if (dataset == null) {
+8",replace
+Chart_11,"replace
+PathIterator iterator2 = p2.getPathIterator(null);
+12",replace
+Chart_12,"replace
+setDataset(dataset);
+4",replace
+Chart_13,"replace
+new Range(0.0, Math.max(constraint.getWidth() - w[2], 0.0)),
+34",replace
+Chart_16,"replace
+if (categoryKeys.length != getCategoryCount()) {
+10",replace
+Chart_17,"replace
+TimeSeries clone = (TimeSeries) super.clone();
+clone.data = (List) ObjectUtilities.deepClone(this.data);
+16",replace
+Chart_20,"replace
+super(paint, stroke, outlinePaint, outlineStroke, alpha);
+13",replace
+Chart_24,"replace
+int g = (int) ((v - this.lowerBound) / (this.upperBound 
+4",replace
+Chart_26,"replace
+if (owner != null) {
+        EntityCollection entities = owner.getEntityCollection();
+              if (entities != null) {
+                  entities.add(new AxisLabelEntity(this, hotspot, this.labelToolTip, this.labelURL));
+        }
+ }
+113",replace
+Chart_4,"add
+if (r != null) {
+}
+67",add
+Chart_5,"add,replace
+ if (this.allowDuplicateXValues) {            
+   add(x, y);            
+   return null;            
+ }
+if (index >= 0) {
+5
+8","add,replace"
+Chart_7,"replace
+long s = getDataItem(this.maxMiddleIndex).getPeriod().getStart();
+long e = getDataItem(this.maxMiddleIndex).getPeriod().getEnd();
+36
+38",replace
+Chart_8,"replace
+this(time, zone, Locale.getDefault());
+12",replace
+Chart_9,"replace
+if (startIndex > endIndex || endIndex < 0 ) {
+16",replace
+Cli_10,"replace
+this.requiredOptions = new ArrayList(options.getRequiredOptions()); 
+3",replace
+Cli_11,"replace
+if (option.hasArg() && option.hasArgName()) 
+20",replace
+Cli_18,"add
+tokens.add(token);
+31",add
+Cli_28,"replace
+continue; 
+39",replace
+Cli_31,"replace
+argName = null; 
+4",replace
+Cli_34,"replace
+type = String.class; 
+6",replace
+Cli_8,"replace
+pos = findWrapPos(text, width, 0); 
+21",replace
+Closure_10,"replace
+return anyResultsMatch(n, MAY_BE_STRING_PREDICATE);
+3",replace
+Closure_104,"replace
+if (!result.isNoType()) {
+19",replace
+Closure_109,"replace
+if (token == JsDocToken.QMARK) {
+      return newNode(Token.QMARK);
+    } else {
+      return parseBasicTypeExpression(token);
+    }
+2",replace
+Closure_11,"delete
+else if (n.getJSType() != null && parent.isAssign()) {
+  return;
+20",delete
+Closure_113,"replace
+if (provided != null || requiresLevel.isOn()) { 
+35",replace
+Closure_123,"replace
+Context rhsContext = getContextForNoInOperator(context); 
+179",replace
+Closure_13,"replace
+Node next = c.getNext();
+traverse(c);
+14",replace
+Closure_147,"replace
+pType == Token.ASSIGN || pType == Token.OBJECTLIT)) {
+23",replace
+Closure_15,"add
+if (n.isDelProp()) {
+     return true;
+}
+28",add
+Closure_161,"add
+if (isAssignmentTarget(n)) {
+      return n;
+ }
+21",add
+Closure_167,"replace
+if (restrictedType != null && restrictedType != originalType) { 
+3",replace
+Closure_168,"replace
+if (t.getScopeDepth() <= 1) { 
+10",replace
+Closure_18,"replace
+if (options.dependencyOptions.needsManagement()) {
+49",replace
+Closure_21,"replace
+if (n.isExprResult() || n.isBlock()) {
+18",replace
+Closure_30,"replace
+(new NodeTraversal(compiler, this)).traverseRoots(externs, root);
+2",replace
+Closure_33,"add
+if (hasReferenceName()) {
+   return;
+}
+9",add
+Closure_36,"add
+if (convention.getSingletonGetterClassName(callNode) != null) {
+          return false;
+}
+62",add
+Closure_38,"replace
+if ((x < 0 || isNegativeZero(x)) && prev == '-') {
+6",replace
+Closure_44,"replace
+            if (!(getLastChar() == '/' && c == '/')) {
+              append("" "");
+            }
+14",replace
+Closure_5,"add
+if (gramps.isDelProp()) {
+  return false;
+}
+23",add
+Closure_52,"replace
+return len > 0 && (len == 1 || s.charAt(0) != '0');
+9",replace
+Closure_56,"replace
+        if (pos >= js.length()) {
+          return null;
+        } else {
+          return js.substring(pos, js.length());
+        }
+47",replace
+Closure_57,"replace
+if (target != null && target.getType() == Token.STRING) {
+10",replace
+Closure_62,"replace
+&& 0 <= charno && charno <= sourceExcerpt.length()) {
+33",replace
+Closure_70,"replace
+jsDocParameter.getJSType(), false);
+12",replace
+Closure_72,"replace
+if (li.referenced || !removeUnused) {
+7",replace
+Closure_73,"replace
+if (c > 0x1f && c < 0x7f) {
+58",replace
+Closure_78,"delete
+error(DiagnosticType.error(""JSC_DIVIDE_BY_0_ERROR"", ""Divide by 0""), right);
+delete
+error(DiagnosticType.error(""JSC_DIVIDE_BY_0_ERROR"", ""Divide by 0""), right);",delete
+Closure_86,"replace
+return false; // Corrected from 'return true;'
+42",replace
+Closure_89,"replace
+if (aliasingGets > 0) {
+25",replace
+Closure_9,"replace
+String moduleName = guessCJSModuleName(script.getSourceFileName());
+5",replace
+Closure_92,"replace
+int indexOfDot = namespace.lastIndexOf('.');
+43",replace
+Codec_1,"replace
+txt = txt.toLowerCase(java.util.Locale.ENGLISH);
+23",replace
+Codec_10,"replace
+txt = txt.replaceAll(""mb$"", ""m2""); 
+27",replace
+Codec_17,"replace
+ return newString(bytes, Charsets.ISO_8859_1); 
+2",replace
+Codec_2,"replace
+ if (lineLength > 0 && pos > 0) {  { // Buffer space check was done at the start of the EOF block.
+33",replace
+Codec_3,"replace
+ } else if (contains(value, index + 1, 3, ""IER"")) { 
+38",replace
+Codec_7,"replace
+return StringUtils.newStringUtf8(encodeBase64(binaryData, false)); 
+2",replace
+Codec_9,"replace
+long len = getEncodeLength(binaryData, isChunked ? MIME_CHUNK_SIZE : 0, CHUNK_SEPARATOR); 
+6",replace
+Collection_1,"add
+break;
+break;
+break;
+5
+8
+11",add
+Compress_19,"replace
+if (rawCentralDirectoryData.length < expectedLength) {
+11",replace
+Compress_23,"replace
+dictSize |= (coder.properties[i + 1] & 0xffl) << (8 * i);
+8",replace
+Compress_31,"delete
+if(currentByte==0){break;}
+19",delete
+Compress_32,"replace
+currEntry.setGroupId(Long.parseLong(val));
+currEntry.setUserId(Long.parseLong(val));
+21
+25",replace
+Compress_42,"replace
+return (getUnixMode() & UnixStat.FILE_TYPE_FLAG) == UnixStat.LINK_FLAG;
+2",replace
+Compress_44,"delete
+if (checksum == null) {
+    throw new NullPointerException(""Parameter checksum must not be null"");
+}
+if (in == null) {
+    throw new NullPointerException(""Parameter in must not be null"");
+}",delete
+Compress_45,"add
+} else {  formatBigIntegerBinary(value, buf, offset, length, negative);
+33",add
+Compress_7,"add
+byte b = buffer[i];
+if (b == 0) { // Trailing null
+16",add
+Csv_1,"replace
+ if (current == '\r' || (current == '\n' && lastChar != '\r')) { 
+4",replace
+Csv_11,"replace
+ final boolean emptyHeader = header == null || header.trim().isEmpty(); 
+26",replace
+Csv_4,"replace
+ return this.headerMap == null ? null : new LinkedHashMap<String, Integer>(this.headerMap); 
+2",replace
+Gson_15,"replace
+ if (!lenient && (Double.isNaN(value) || Double.isInfinite(value))) { 
+3",replace
+Gson_6,"add
+ if (typeAdapter != null) { }
+14",add
+Gson_4,"replace
+beforeValue();
+7",replace
+JacksonCore_25,"replace
+ if (i < maxCode) { 
+16",replace
+JacksonCore_12,"replace
+tokenInputTotal, -1L, _tokenInputRow, 
+10",replace
+JacksonCore_14,"replace
+if ((toRelease != src) && (toRelease.length < src.length)) { throw wrongBuf(); }
+16",replace
+JacksonCore_3,"add
+_currInputRowStart = start;
+_currInputProcessed = -start;
+6",add
+JacksonCore_5,"replace
+char c = str.charAt(i); // FIXED: Check character at current index i
+9",replace
+JacksonCore_8,"replace
+if (!_hasSegments && _currentSegment != null)  return _currentSegment;
+7",replace
+JacksonDatabind_107,"replace
+return NullifyingDeserializer.instance;
+16",replace
+JacksonDatabind_16,"replace
+ return (previous == null) || !previous.equals(ann); 
+6",replace
+JacksonDatabind_17,"replace
+ && !TreeNode.class.isAssignableFrom(t.getRawClass())); 
+14",replace
+JacksonDatabind_27,"replace
+ if (ext.handlePropertyValue(p, ctxt, propName, null)) { 
+22",replace
+JacksonDatabind_34,"replace 
+visitFloatFormat(visitor, typeHint, JsonParser.NumberType.BIG_DECIMAL); 
+9",replace
+JacksonDatabind_45,"replace
+ if ((shape == JsonFormat.Shape.STRING) || format.hasPattern()  || format.hasLocale() || format.hasTimeZone()) { 
+15",replace
+JacksonDatabind_46,"replace
+ sb.append("">;""); 
+7",replace
+JacksonDatabind_57,"replace
+return _bindAndReadValues(_considerFilter(_parserFactory.createParser(src, offset, length),
+7",replace
+JacksonDatabind_65,"add
+ if (isFactoryMethod(am) && am.getParameterCount() == 1) {
+9",add
+JacksonDatabind_70,"replace
+found = key.equals(_hashArea[i-1]);
+15",replace
+JacksonDatabind_90,"replace
+|| canCreateUsingDelegate() || canCreateUsingArrayDelegate()
+3",replace
+JacksonDatabind_96,"replace
+paramName = candidate.paramName(0);
+35",replace
+JacksonDatabind_97,"replace
+ctxt.defaultSerializeValue(_value, gen);
+11",replace
+JacksonXml_3,"add
+return (_currText = _xmlTokens.getText());
+28",add
+JacksonXml_5,"replace
+_rootNameLookup = src._rootNameLookup;
+4",replace
+Jsoup_15,"replace
+else if (StringUtil.in(name, ""base"", ""basefont"", ""bgsound"", ""command"", ""link"", ""meta"", ""noframes"", ""script"", ""style"", ""title"")) {
+21",replace
+Jsoup_20,"add
+if (docData.length() > 0 && docData.charAt(0) == '\uFEFF') {
+    docData = docData.substring(1);
+}
+27",add
+Jsoup_24,"delete
+r.advance();
+7",delete
+Jsoup_26,"add
+if(dirtyDocument.body() != null) { }
+9",add
+Jsoup_39,"add
+doc = null;
+47",add
+Jsoup_41,"replace
+return this.tag.equals(element.tag);
+22",replace
+Jsoup_45,"replace
+} else if ((""td"".equals(name) || ""th"".equals(name)) && !last) {
+13",replace
+Jsoup_46,"replace
+accum.append(""&#xa0;"");
+41",replace
+Jsoup_47,"replace
+if (!inAttribute || escapeMode == EscapeMode.xhtml)
+44",replace
+Jsoup_51,"replace
+return Character.isLetter(c);
+31",replace
+Jsoup_54,"add
+if (key.matches(""[a-zA-Z_:]{1}[-a-zA-Z0-9_:.]*""))
+5",add
+Jsoup_57,"replace
+it.remove();
+12",replace
+Jsoup_62,"replace
+String name = t.asEndTag().name(); 
+2",replace
+Jsoup_83,"replace
+if (c == '\t'|| c ==  '\n'|| c ==  '\r'|| c ==  '\f'|| c ==  ' '|| c ==  '/'|| c ==  '>'|| c ==  TokeniserState.nullChar || c == '<')
+11",replace
+Jsoup_84,"add
+Element el = namespace == null && tagName.contains("":"") ?
+                doc.createElementNS("""", tagName) : 
+11",add
+Jsoup_90,"add
+if (end >= input.length) {
+                return false;
+            }
+26",add
+Jsoup_92,"replace
+attributes.add(pendingAttributeName, value);
+18",replace
+JxPath_16,"replace
+return true;
+5",replace
+Lang_10,"delete
+boolean wasWhite= false;
+if(Character.isWhitespace(c)) {
+    if(!wasWhite) {
+        wasWhite= true;
+         regex.append(""\\s*+"");
+         }
+         continue;
+}
+wasWhite= false;
+16",delete
+Lang_15,"replace
+if (toClass.equals(cls)) {
+26",replace
+Lang_16,"replace
+if (str.startsWith(""0x"") || str.startsWith(""-0x"") || str.startsWith(""0X"") || str.startsWith(""-0X"")) {
+15",replace
+Lang_21,"replace
+cal1.get(Calendar.HOUR_OF_DAY) == cal2.get(Calendar.HOUR_OF_DAY) &&
+9",replace
+Lang_24,"replace
+return foundDigit && !hasExp && !hasDecPoint;
+83",replace
+Lang_26,"replace
+Calendar c = new GregorianCalendar(mTimeZone, mLocale);
+2",replace
+Lang_29,"replace
+static int toJavaVersionInt(String version) {
+1",replace
+Lang_33,"replace
+classes[i] = array[i] == null ? null : array[i].getClass();
+9",replace
+Lang_35,"replace
+return m != null && m.containsKey(value);
+3",replace
+Lang_36,"replace
+if (!Character.isDigit(lastChar) && lastChar != '.') {
+44",replace
+Lang_4,"replace
+final CharSequence result = lookupMap.get(subSeq.toString());
+10",replace
+Lang_46,"replace
+return escapeJavaStyleString(str, false, false);
+2",replace
+Lang_55,"replace
+if(this.runningState == STATE_RUNNING) {
+     stopTime = System.currentTimeMillis();
+}
+13",replace
+Lang_57,"replace
+return availableLocaleList().contains(locale);
+2",replace
+Lang_59,"replace
+str.getChars(0, width, buffer, size);
+7",replace
+Lang_61,"repalce
+int len = size - strLen + 1;
+17",repalce
+Math_100,"replace
+final int cols = problem.getUnboundParameters().length;
+9",replace
+Math_105,"replace
+return Math.max(0d, sumYY - sumXY * sumXY / sumXX);
+2",replace
+Math_11,"replace
+return FastMath.pow(2 * FastMath.PI, -0.5 * dim) *
+7",replace
+Math_2,"replace
+return getSampleSize() * ((double) getNumberOfSuccesses() / getPopulationSize());
+2",replace
+Math_27,"replace
+return doubleValue() * 100.0;
+2",replace
+Math_30,"replace
+final double n1n2prod = n1 * n2;
+6",replace
+Math_33,"replace
+if (Precision.compareTo(entry, 0d, epsilon) > 0) {
+12",replace
+Math_41,"replace
+for (int i = begin; i < begin + length; i++) {
+20",replace
+Math_46,"replace
+return NaN;
+11",replace
+Math_47,"replace
+return isZero() ? NaN : INF;
+6",replace
+Math_5,"replace
+return INF;
+7",replace
+Math_57,"replace
+double sum = 0;
+15",replace
+Math_58,"replace
+return fit(guess);
+3",replace
+Math_59,"replace
+return (a <= b) ? b : (Float.isNaN(a + b) ? Float.NaN : a);
+2",replace
+Math_62,"replace
+return optimize(f, goal, min, max, min +  (max - min)/2.0);
+5",replace
+Math_63,"replace
+return equals(x, y, 1);
+2",replace
+Math_65,"replace
+chiSquare += residual * residual * residualsWeights[i];
+5",replace
+Math_67,"replace
+return optimaValues[0];
+2",replace
+Math_69,"replace
+out[i][j] = 2 * tDistribution.cumulativeProbability(-t);
+12",replace
+Math_70,"replace
+return solve(f, min, max);
+3",replace
+Math_72,"replace
+setResult(min, 0);
+17",replace
+Math_77,"replace
+max = Math.max(max, Math.abs(a));
+5",replace
+Math_80,"replace
+int j = 4 * (n - 1);
+4",replace
+Math_81,"replace
+if (end - start > 3) {
+114",replace
+Math_82,"replace
+if (MathUtils.compareTo(entry, 0, epsilon) > 0) {
+7",replace
+Math_85,"replace
+if (fa * fb > 0.0 ) { // corrected the line
+34",replace
+Math_94,"replace
+if (u == 0 || v == 0) {
+2",replace
+Math_96,"replace
+ret = (real == rhs.real) && (imaginary == rhs.imaginary); 
+12",replace
+Math_98,"replace
+final double[] out = new double[nRows];
+9",replace
+Mockito_11,"replace
+return method.hashCode();
+3",replace
+Mockito_24,"replace
+return invocation.getMock() == invocation.getArguments()[0] ? 0 : 1;
+14",replace
+Mockito_30,"replace
+new Reporter().smartNullPointerException(obj, location);
+6",replace
+Mockito_34,"replace
+if (m instanceof CapturesArguments && k < i.getArguments().length) {
+4",replace
+Mockito_38,"replace
+return StringDescription.toString(m).equals(String.valueOf(arg));
+2",replace
+Mockito_5,"replace
+catch (AssertionError e) {
+17",replace
+Time_16,"replace
+instantLocal, chrono, iLocale, iPivotYear, chrono.year().get(instantLocal));
+13",replace
+Time_19,"replace
+} else if (offsetLocal >= 0) {
+900",replace
+Time_26,"replace
+return iZone.convertLocalToUTC(localInstant, false, instant);
+33",replace
+Time_4,"replace
+Partial newPartial = new Partial(newTypes, newValues, iChronology);
+39",replace

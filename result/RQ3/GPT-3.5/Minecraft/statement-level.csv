@@ -1,0 +1,28 @@
+﻿bug_id,patch,repair_action
+13,"replace
+c = xnew0(struct keyval, 2);
+136",replace
+18,"replace
+struct keyval **comments)
+238",replace
+19,"replace
+*comments = xnew0(struct keyval, 1);
+240",replace
+25,"replace
+d_print(""snd_pcm_open: error: %s\n"", snd_strerror(rc)); goto error;
+291",replace
+29,"add
+dir = 0;
+185",add
+3,"replace
+c = xnew0(struct keyval, nr + 1);
+251",replace
+35,"replace
+} else if (type == EXPR_INT) {
+566",replace
+44,"add
+memset(buf + d, ' ', ws_len);
+161",add
+5,"replace
+*comments = xnew0(struct keyval, 1);
+455",replace
