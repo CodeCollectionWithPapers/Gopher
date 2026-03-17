@@ -1,0 +1,87 @@
+﻿bug_id,patch
+18,"234 	return 0;
+235 }
+236 
+237 static int wav_read_comments(struct input_plugin_data *ip_data,
+238 		struct keyval **comments)
+239 {
+240 	*comments = xnew0(struct keyval, 1);
+241 	return 0;
+242 }
+243 
+244 static int wav_duration(struct input_plugin_data *ip_data)"
+42,"137  * aling_left:
+138  *     1 => aling left. 0 => align right
+139  */
+140 static void print_str(char *buf, int *idx, const char *str, int width, int align_left)
+141 {
+142 	int d = *idx;
+143 
+144 	if (width) {
+145 		int ws_len;
+146 		int i = 0;
+147 
+148 		if (align_left) {
+149 			i = width;
+150 			d += u_copy_chars(buf + d, str, &i);
+151 
+152 			ws_len = width - i;
+153 			memset(buf + d, ' ', ws_len);
+154 			d += ws_len;
+155 		} else {
+156 			int s = 0;
+157 
+158 			ws_len = width - u_str_width(str);
+159 
+160 			if (ws_len > 0) {
+161 				memset(buf + d, ' ', ws_len);
+162 				d += ws_len;
+163 				i += ws_len;
+164 			}
+165 
+166 			if (ws_len < 0) {
+167 				int w, c = -ws_len;
+168 				uchar u;
+169 
+170 				while (c > 0) {
+171 					u_get_char(str, &s, &u);
+172 					w = u_char_width(u);
+173 					c -= w;
+174 				}
+175 				if (c < 0) {
+176 					/* gaah, skipped too much */
+177 					if (u_char_width(u) == 2) {
+178 						/* double-byte */
+179 						buf[d++] = ' ';
+180 					} else {
+181 						/* <xx> */
+182 						if (c == -3)
+183 							buf[d++] = hex_tab[(u >> 4) & 0xf];
+184 						if (c <= -2)
+185 							buf[d++] = hex_tab[u & 0xf];
+186 						buf[d++] = '>';
+187 					}
+188 				}
+189 			}
+190 
+191 			if (width - i > 0) {
+192 				int w = width - i;
+193 
+194 				d += u_copy_chars(buf + d, str + s, &w);
+195 			}
+196 		}
+197 	} else {
+198 		int s = 0;
+199 		uchar u;
+200 
+201 		while (1) {
+202 			u_get_char(str, &s, &u);
+203 			if (u == 0)
+204 				break;
+205 			u_set_char(buf, &d, u);
+206 		}
+207 	}
+208 	*idx = d;
+209 }
+210 
+211 static void print(char *str, const char *format, const struct format_option *fopts)"

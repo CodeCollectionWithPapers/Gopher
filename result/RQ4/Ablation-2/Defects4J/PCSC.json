@@ -1,0 +1,297 @@
+{
+  "Chart_1": {
+    "action": "replace",
+    "patch": "if (dataset == null) {",
+    "location": "8"
+  },
+  "Chart_11": {
+    "action": "replace",
+    "patch": "PathIterator iterator2 = p2.getPathIterator(null);",
+    "location": "12"
+  },
+  "Chart_4": {
+    "action": "add",
+    "patch": "if (r != null) {\n}",
+    "location": "67"
+  },
+  "Chart_8": {
+    "action": "replace",
+    "patch": "this(time, zone, Locale.getDefault());",
+    "location": "12"
+  },
+  "Chart_9": {
+    "action": "replace",
+    "patch": "if (startIndex > endIndex || endIndex < 0 ) {",
+    "location": "16"
+  },
+  "Closure_10": {
+    "action": "replace",
+    "patch": "return anyResultsMatch(n, MAY_BE_STRING_PREDICATE);",
+    "location": "3"
+  },
+  "Closure_104": {
+    "action": "replace",
+    "patch": "if (!result.isNoType()) {",
+    "location": "19"
+  },
+  "Closure_11": {
+    "action": "delete",
+    "patch": "else if (n.getJSType() != null && parent.isAssign()) {\n  return;",
+    "location": "20"
+  },
+  "Closure_113": {
+    "action": "replace",
+    "patch": "if (provided != null || requiresLevel.isOn()) { ",
+    "location": "35"
+  },
+  "Closure_13": {
+    "action": "replace",
+    "patch": "Node next = c.getNext();\ntraverse(c);",
+    "location": "14"
+  },
+  "Closure_147": {
+    "action": "replace",
+    "patch": "pType == Token.ASSIGN || pType == Token.OBJECTLIT)) {",
+    "location": "23"
+  },
+  "Closure_15": {
+    "action": "add",
+    "patch": "if (n.isDelProp()) {\n     return true;\n}",
+    "location": "28"
+  },
+  "Closure_168": {
+    "action": "replace",
+    "patch": "if (t.getScopeDepth() <= 1) { ",
+    "location": "10"
+  },
+  "Closure_18": {
+    "action": "replace",
+    "patch": "if (options.dependencyOptions.needsManagement()) {",
+    "location": "49"
+  },
+  "Closure_21": {
+    "action": "replace",
+    "patch": "if (n.isExprResult() || n.isBlock()) {",
+    "location": "18"
+  },
+  "Closure_30": {
+    "action": "replace",
+    "patch": "(new NodeTraversal(compiler, this)).traverseRoots(externs, root);",
+    "location": "2"
+  },
+  "Closure_33": {
+    "action": "add",
+    "patch": "if (hasReferenceName()) {\n   return;\n}",
+    "location": "9"
+  },
+  "Closure_38": {
+    "action": "replace",
+    "patch": "if ((x < 0 || isNegativeZero(x)) && prev == '-') {",
+    "location": "6"
+  },
+  "Closure_44": {
+    "action": "replace",
+    "patch": "            if (!(getLastChar() == '/' && c == '/')) {\n              append(\" \");\n            }",
+    "location": "14"
+  },
+  "Closure_5": {
+    "action": "add",
+    "patch": "if (gramps.isDelProp()) {\n  return false;\n}",
+    "location": "23"
+  },
+  "Closure_52": {
+    "action": "replace",
+    "patch": "return len > 0 && (len == 1 || s.charAt(0) != '0');",
+    "location": "9"
+  },
+  "Closure_57": {
+    "action": "replace",
+    "patch": "if (target != null && target.getType() == Token.STRING) {",
+    "location": "10"
+  },
+  "Closure_62": {
+    "action": "replace",
+    "patch": "&& 0 <= charno && charno <= sourceExcerpt.length()) {",
+    "location": "33"
+  },
+  "Closure_70": {
+    "action": "replace",
+    "patch": "jsDocParameter.getJSType(), false);",
+    "location": "12"
+  },
+  "Closure_72": {
+    "action": "replace",
+    "patch": "if (li.referenced || !removeUnused) {",
+    "location": "7"
+  },
+  "Closure_73": {
+    "action": "replace",
+    "patch": "if (c > 0x1f && c < 0x7f) {",
+    "location": "58"
+  },
+  "Closure_86": {
+    "action": "replace",
+    "patch": "return false; ",
+    "location": "42"
+  },
+  "Closure_89": {
+    "action": "replace",
+    "patch": "if (aliasingGets > 0) {",
+    "location": "25"
+  },
+  "Closure_9": {
+    "action": "replace",
+    "patch": "String moduleName = guessCJSModuleName(script.getSourceFileName());",
+    "location": "5"
+  },
+  "Closure_92": {
+    "action": "replace",
+    "patch": "int indexOfDot = namespace.lastIndexOf('.');",
+    "location": "43"
+  },
+  "Lang_15": {
+    "action": "replace",
+    "patch": "if (toClass.equals(cls)) {",
+    "location": "26"
+  },
+  "Lang_24": {
+    "action": "replace",
+    "patch": "return foundDigit && !hasExp && !hasDecPoint;",
+    "location": "83"
+  },
+  "Lang_29": {
+    "action": "replace",
+    "patch": "static int toJavaVersionInt(String version) {",
+    "location": "1"
+  },
+  "Lang_33": {
+    "action": "replace",
+    "patch": "classes[i] = array[i] == null ? null : array[i].getClass();",
+    "location": "9"
+  },
+  "Lang_35": {
+    "action": "replace",
+    "patch": "return m != null && m.containsKey(value);",
+    "location": "3"
+  },
+  "Lang_36": {
+    "action": "replace",
+    "patch": "if (!Character.isDigit(lastChar) && lastChar != '.') {",
+    "location": "44"
+  },
+  "Lang_4": {
+    "action": "replace",
+    "patch": "final CharSequence result = lookupMap.get(subSeq.toString());",
+    "location": "10"
+  },
+  "Lang_46": {
+    "action": "replace",
+    "patch": "return escapeJavaStyleString(str, false, false);",
+    "location": "2"
+  },
+  "Lang_59": {
+    "action": "replace",
+    "patch": "str.getChars(0, width, buffer, size);",
+    "location": "7"
+  },
+  "Lang_61": {
+    "action": "repalce",
+    "patch": "int len = size - strLen + 1;",
+    "location": "17"
+  },
+  "Math_27": {
+    "action": "replace",
+    "patch": "return doubleValue() * 100.0;",
+    "location": "2"
+  },
+  "Math_30": {
+    "action": "replace",
+    "patch": "final double n1n2prod = n1 * n2;",
+    "location": "6"
+  },
+  "Math_41": {
+    "action": "replace",
+    "patch": "for (int i = begin; i < begin + length; i++) {",
+    "location": "20"
+  },
+  "Math_46": {
+    "action": "replace",
+    "patch": "return NaN;",
+    "location": "11"
+  },
+  "Math_47": {
+    "action": "replace",
+    "patch": "return isZero() ? NaN : INF;",
+    "location": "6"
+  },
+  "Math_5": {
+    "action": "replace",
+    "patch": "return INF;",
+    "location": "7"
+  },
+  "Math_57": {
+    "action": "replace",
+    "patch": "double sum = 0;",
+    "location": "15"
+  },
+  "Math_58": {
+    "action": "replace",
+    "patch": "return fit(guess);",
+    "location": "3"
+  },
+  "Math_63": {
+    "action": "replace",
+    "patch": "return equals(x, y, 1);",
+    "location": "2"
+  },
+  "Math_65": {
+    "action": "replace",
+    "patch": "chiSquare += residual * residual * residualsWeights[i];",
+    "location": "5"
+  },
+  "Math_67": {
+    "action": "replace",
+    "patch": "return optimaValues[0];",
+    "location": "2"
+  },
+  "Math_69": {
+    "action": "replace",
+    "patch": "out[i][j] = 2 * tDistribution.cumulativeProbability(-t);",
+    "location": "12"
+  },
+  "Math_80": {
+    "action": "replace",
+    "patch": "int j = 4 * (n - 1);",
+    "location": "4"
+  },
+  "Math_81": {
+    "action": "replace",
+    "patch": "if (end - start > 3) {",
+    "location": "114"
+  },
+  "Math_85": {
+    "action": "replace",
+    "patch": "if (fa * fb > 0.0 ) { ",
+    "location": "34"
+  },
+  "Math_94": {
+    "action": "replace",
+    "patch": "if (u == 0 || v == 0) {",
+    "location": "2"
+  },
+  "Math_98": {
+    "action": "replace",
+    "patch": "final double[] out = new double[nRows];",
+    "location": "9"
+  },
+  "Mockito_24": {
+    "action": "replace",
+    "patch": "return invocation.getMock() == invocation.getArguments()[0] ? 0 : 1;",
+    "location": "14"
+  },
+  "Mockito_5": {
+    "action": "replace",
+    "patch": "catch (AssertionError e) {",
+    "location": "17"
+  }
+}

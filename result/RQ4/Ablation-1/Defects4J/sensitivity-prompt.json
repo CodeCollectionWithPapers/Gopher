@@ -1,0 +1,22 @@
+{
+  "Chart_8": {
+    "action": "replace",
+    "patch": "this(time, zone, Locale.getDefault());",
+    "location": "12"
+  },
+  "Closure_92": {
+    "action": "replace",
+    "patch": "int indexOfDot = namespace.lastIndexOf('.');",
+    "location": "43"
+  },
+  "Math_77": {
+    "action": "replace",
+    "patch": "max = Math.max(max, Math.abs(a));",
+    "location": "5"
+  },
+  "Math_80": {
+    "action": "replace",
+    "patch": "int j = 4 * (n - 1);",
+    "location": "4"
+  }
+}

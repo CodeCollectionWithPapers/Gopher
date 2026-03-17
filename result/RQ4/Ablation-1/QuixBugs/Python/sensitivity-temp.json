@@ -1,0 +1,37 @@
+{
+  "breadth_first_search": {
+    "action": "replace",
+    "patch": "while queue:",
+    "location": "8"
+  },
+  "hanoi": {
+    "action": "replace",
+    "patch": "steps.append((start, end,1))",
+    "location": "6"
+  },
+  "is_valid_parenthesization": {
+    "action": "replace",
+    "patch": "return depth != 0",
+    "location": "11"
+  },
+  "knapsack": {
+    "action": "replace",
+    "patch": "if weight < j:",
+    "location": "11"
+  },
+  "kth": {
+    "action": "replace",
+    "patch": "return kth(above, k + num_lessoreq)",
+    "location": "12"
+  },
+  "mergesort": {
+    "action": "replace",
+    "patch": "if len(arr) < 1:",
+    "location": "16"
+  },
+  "sqrt": {
+    "action": "replace",
+    "patch": "while abs(x - approx) > epsilon:",
+    "location": "3"
+  }
+}

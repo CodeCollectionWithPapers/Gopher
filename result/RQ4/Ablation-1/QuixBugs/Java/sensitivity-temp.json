@@ -1,0 +1,27 @@
+{
+  "DEPTH_FIRST_SEARCH": {
+    "action": "replace",
+    "patch": "nodesvisited.add(node);",
+    "location": "10"
+  },
+  "KNAPSACK": {
+    "action": "replace",
+    "patch": "else if (weight < j) {",
+    "location": "17"
+  },
+  "KTH": {
+    "action": "replace",
+    "patch": "return kth(above, k + num_lessoreq);",
+    "location": "19"
+  },
+  "MERGESORT": {
+    "action": "replace",
+    "patch": "if (arr.size() <= 1) {",
+    "location": "2"
+  },
+  "TO_BASE": {
+    "action": "replace",
+    "patch": "result = String.valueOf(alphabet.charAt(i));",
+    "location": "8"
+  }
+}

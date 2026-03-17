@@ -1,0 +1,101 @@
+project:
+  name: "Gopher"
+  version: "1.0.0"
+  workspace_root: "./data/workspace"
+  log_level: "INFO"
+  max_workers: 8
+
+joern:
+
+  installation_path: "/opt/joern/joern-cli"
+  cli_command: "joern"
+  parse_command: "joern-parse"
+  export_command: "joern-export"
+  java_opts: "-Xmx32g -Xms4g"
+
+  timeouts:
+#    cpg_generation: 600
+    cpg_generation: 300
+    script_execution: 300
+
+  scripts:
+    data_dep_slice: "./src/gopher/analysis/scala/data_dependency.sc"
+    control_dep_slice: "./src/gopher/analysis/scala/control_dependency.sc"
+    ast_extraction: "./src/gopher/analysis/scala/ast_structure.sc"
+
+llm:
+  retry:
+    max_attempts: 5
+#    max_attempts: 10
+    backoff_factor: 2.0
+    timeout: 60
+
+  api_providers:
+    # Gemini-2.0-flash
+    google:
+      model_name: "gemini-2.0-flash"
+      api_key_env: " "
+      base_url: "https://generativelanguage.googleapis.com/v1beta/models"
+
+    # GPT-3.5
+    openai:
+      model_name: "gpt-3.5-turbo"
+      api_key_env: " "
+      base_url: "https://api.openai.com/v1"
+
+    # DeepSeek-V2.5
+    deepseek:
+      model_name: "deepseek-chat"
+      api_key_env: " "
+      base_url: "https://api.deepseek.com"
+
+  local_providers:
+    ollama:
+      base_url: "http://localhost:11434"
+      models:
+        qwen_7b: "qwen2.5-coder:7b"
+        qwen_32b: "qwen2.5-coder:32b"
+        llama_8b: "llama3:8b"
+
+      options:
+        num_gpu: 1
+        num_ctx: 16384
+        temperature: 0.7
+
+strategy:
+
+  sample_size: 15
+#  sample_size: 5
+  max_iterations: 3
+
+  rounds:
+    1:
+      name: "zero_shot_baseline"
+      context_mode: "none"
+      description: "Standard repair with only buggy method body."
+    2:
+      name: "focused_dependency"
+      context_mode: "slice"
+      description: "Repair with Joern-generated orthogonal dependency slices."
+    3:
+      name: "comprehensive_context"
+      context_mode: "periphery"
+      description: "Repair with class-level definitions to fix identifier errors."
+
+datasets:
+  defects4j:
+    root_path: "/data/datasets/defects4j"
+    framework_cmd: "defects4j"
+    checkout_cmd: "defects4j checkout -p {project} -v {id}b -w {work_dir}"
+    test_cmd: "defects4j test -w {work_dir}"
+    compile_cmd: "defects4j compile -w {work_dir}"
+
+  quixbugs:
+    root_path: "/data/datasets/quixbugs"
+    language: "python" # or java
+    test_runner_script: ""
+
+  minecraft:
+    root_path: "/data/datasets/minecraft_bugs"
+    build_system: "gradle"
+    test_cmd: ""

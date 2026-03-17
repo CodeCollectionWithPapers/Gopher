@@ -1,0 +1,22 @@
+{
+  "KNAPSACK": {
+    "action": "replace",
+    "patch": "else if (weight < j) {",
+    "location": "17"
+  },
+  "KTH": {
+    "action": "replace",
+    "patch": "return kth(above, k + num_lessoreq);",
+    "location": "19"
+  },
+  "PASCAL": {
+    "action": "replace",
+    "patch": "for (int c=0; c<r; c++) {",
+    "location": "9"
+  },
+  "REVERSE_LINKED_LIST": {
+    "action": "replace",
+    "patch": "prevnode = node; ",
+    "location": "7"
+  }
+}

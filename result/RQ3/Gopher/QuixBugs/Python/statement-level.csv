@@ -1,0 +1,130 @@
+﻿bug_id,patch,repair_action
+bitcount,"replace
+n &= n - 1
+4",replace
+breadth_first_search,"replace
+while queue:
+8",replace
+bucketsort,"replace
+for i, count in enumerate(counts):
+7",replace
+depth_first_search,"add
+nodesvisited.add(node)
+10",add
+detect_cycle,"replace
+if hare is None or hare.successor is None:
+5",replace
+find_first_in_sorted,"replace
+while lo < hi:
+5",replace
+find_in_sorted,"replace
+return binsearch(mid+1, end)
+9",replace
+flatten,"replace
+yield x
+7",replace
+gcd,"replace
+return gcd(b, a % b)
+5",replace
+get_factors,"replace
+return [n]
+9",replace
+hanoi,"replace
+steps.append((start, end))
+6",replace
+is_valid_parenthesization,"replace
+return depth == 0
+11",replace
+kheapsort,"replace
+for x in arr[k:]:
+7",replace
+knapsack,"replace
+if weight <= j:
+11",replace
+kth,"replace
+return kth(above, k - num_lessoreq)
+12",replace
+levenshtein,"replace
+return levenshtein(source[1:], target[1:])
+11",replace
+lis,"replace
+longest = max(longest, length + 1)
+13",replace
+longest_common_subsequence,"replace
+return a[0] + longest_common_subsequence(a[1:], b[1:])
+6",replace
+max_sublist_sum,"replace
+max_ending_here = max(0, max_ending_here + x)
+6",replace
+mergesort,"replace
+if len(arr) <= 1:
+16",replace
+minimum_spanning_tree,"replace
+group_by_node[node] = group_by_node[u]
+11",replace
+next_palindrome,"replace
+return [1] + (len(digit_list) - 1) * [0] + [1]
+15",replace
+next_permutation,"replace
+if perm[i] < perm[j]:
+5",replace
+pascal,"replace
+for c in range(0, r+1):
+5",replace
+possible_change,"replace
+if total < 0 or not coins:
+4",replace
+powerset,"replace
+return rest_subsets + [[first] + subset for subset in rest_subsets]
+5",replace
+quicksort,"replace
+greater = quicksort([x for x in arr[1:] if x >= pivot])
+7",replace
+reverse_linked_list,"replace
+prevnode = node
+2",replace
+rpn_eval,"replace
+stack.append( op(token, b, a))
+18",replace
+shortest_paths,"replace
+weight_by_node[v] = min(
+                weight_by_node[u] + weight,
+                weight_by_node[v]
+            )
+9",replace
+shortest_path_length,"replace
+insert_or_update(unvisited_nodes,
+                (min(
+                    get(unvisited_nodes, nextnode) or float('inf'),
+                    distance + length_by_edge[node, nextnode]
+                ),
+                nextnode)
+            )
+19",replace
+shortest_path_lengths,"replace
+length_by_path[i, j] = min(
+                    length_by_path[i, j],
+                    length_by_path[i, k] + length_by_path[k, j]
+                )
+11",replace
+shunting_yard,"replace
+opstack.append(token)
+17",replace
+sieve,"replace
+if all(n % p > 0 for p in primes):
+4",replace
+sqrt,"replace
+while abs(x - approx ** 2) > epsilon:
+3",replace
+subsequences,"replace
+return [[]]
+3",replace
+topological_ordering,"replace
+if set(ordered_nodes).issuperset(nextnode.incoming_nodes) and nextnode not in ordered_nodes:
+6",replace
+to_base,"replace
+result = alphabet[i] + result
+8",replace
+wrap,"replace
+lines.append(text)
+10",replace

@@ -1,0 +1,171 @@
+﻿bug_id,patch,repair_action
+Chart_1,"replace
+if (dataset == null) {
+8",replace
+Chart_12,"replace
+setDataset(dataset);
+4",replace
+Chart_20,"replace
+super(paint, stroke, outlinePaint, outlineStroke, alpha);
+13",replace
+Chart_4,"add
+if (r != null) {
+}
+67",add
+Chart_5,"add,replace
+ if (this.allowDuplicateXValues) {            
+   add(x, y);            
+   return null;            
+ }
+if (index >= 0) {
+5
+8","add,replace"
+Chart_7,"replace
+long s = getDataItem(this.maxMiddleIndex).getPeriod().getStart();
+long e = getDataItem(this.maxMiddleIndex).getPeriod().getEnd();
+36
+38",replace
+Chart_8,"replace
+this(time, zone, Locale.getDefault());
+12",replace
+Chart_9,"replace
+if (startIndex > endIndex || endIndex < 0 ) {
+16",replace
+Cli_10,"replace
+this.requiredOptions = new ArrayList(options.getRequiredOptions()); 
+3",replace
+Cli_28,"replace
+continue; 
+39",replace
+Cli_31,"replace
+argName = null; 
+4",replace
+Closure_104,"replace
+if (!result.isNoType()) {
+18",replace
+Closure_109,"replace
+if (token == JsDocToken.QMARK) {
+      return newNode(Token.QMARK);
+    } else {
+      return parseBasicTypeExpression(token);
+    }
+2",replace
+Closure_113,"replace
+if (provided != null || requiresLevel.isOn()) { 
+35",replace
+Closure_123,"replace
+Context rhsContext = getContextForNoInOperator(context); 
+179",replace
+Closure_13,"replace
+Node next = c.getNext();
+traverse(c);
+14",replace
+Closure_36,"add
+if (convention.getSingletonGetterClassName(callNode) != null) {
+          return false;
+}
+62",add
+Closure_44,"replace
+            if (!(getLastChar() == '/' && c == '/')) {
+              append("" "");
+            }
+14",replace
+Closure_5,"add
+if (gramps.isDelProp()) {
+  return false;
+}
+23",add
+Closure_52,"replace
+return len > 0 && (len == 1 || s.charAt(0) != '0');
+9",replace
+Closure_9,"replace
+String moduleName = guessCJSModuleName(script.getSourceFileName());
+5",replace
+Codec_18,"replace
+ return cs1.length() == cs2.length() && CharSequenceUtils.regionMatches(cs1, false, 0, cs2, 0, cs1.length()); 
+11",replace
+Codec_2,"replace
+ if (lineLength > 0 && pos > 0) {  { // Buffer space check was done at the start of the EOF block.
+33",replace
+Compress_32,"replace
+currEntry.setGroupId(Long.parseLong(val));
+currEntry.setUserId(Long.parseLong(val));
+21
+25",replace
+Compress_44,"delete
+if (checksum == null) {
+    throw new NullPointerException(""Parameter checksum must not be null"");
+}
+if (in == null) {
+    throw new NullPointerException(""Parameter in must not be null"");
+}",delete
+Csv_1,"replace
+ if (current == '\r' || (current == '\n' && lastChar != '\r')) { 
+4",replace
+JacksonCore_14,"replace
+if ((toRelease != src) && (toRelease.length < src.length)) { throw wrongBuf(); }
+16",replace
+JacksonCore_5,"replace
+char c = str.charAt(i); // FIXED: Check character at current index i
+9",replace
+JacksonDatabind_110,"replace
+} else if (type.hasRawClass(CLASS_UNMODIFIABLE_LIST) || type.hasRawClass(CLASS_EMPTY_LIST)) {
+10",replace
+JacksonDatabind_16,"replace
+ return (previous == null) || !previous.equals(ann); 
+6",replace
+JacksonDatabind_17,"replace
+ && !TreeNode.class.isAssignableFrom(t.getRawClass())); 
+14",replace
+JacksonDatabind_27,"replace
+ if (ext.handlePropertyValue(p, ctxt, propName, null)) { 
+22",replace
+JacksonDatabind_57,"replace
+return _bindAndReadValues(_considerFilter(_parserFactory.createParser(src, offset, length),
+7",replace
+JacksonDatabind_97,"replace
+ctxt.defaultSerializeValue(_value, gen);
+11",replace
+Jsoup_39,"add
+doc = null;
+47",add
+Jsoup_54,"add
+if (key.matches(""[a-zA-Z_:]{1}[-a-zA-Z0-9_:.]*""))
+5",add
+Jsoup_57,"replace
+it.remove();
+12",replace
+Jsoup_84,"add
+Element el = namespace == null && tagName.contains("":"") ?
+                doc.createElementNS("""", tagName) : 
+11",add
+Jsoup_92,"replace
+attributes.add(pendingAttributeName, value);
+18",replace
+Lang_33,"replace
+classes[i] = array[i] == null ? null : array[i].getClass();
+9",replace
+Lang_35,"replace
+return m != null && m.containsKey(value);
+3",replace
+Lang_4,"replace
+final CharSequence result = lookupMap.get(subSeq.toString());
+10",replace
+Math_47,"replace
+return isZero() ? NaN : INF;
+6",replace
+Math_5,"replace
+return INF;
+7",replace
+Math_62,"replace
+return optimize(f, goal, min, max, min +  (max - min)/2.0);
+5",replace
+Math_75,"replace
+return getPct((Comparable<?>) v);
+2",replace
+Mockito_34,"replace
+if (m instanceof CapturesArguments && k < i.getArguments().length) {
+4",replace
+Mockito_5,"replace
+catch (AssertionError e) {
+17",replace

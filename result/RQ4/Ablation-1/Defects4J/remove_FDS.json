@@ -1,0 +1,147 @@
+{			
+  "Chart_16": {			
+    "action": "replace",
+    "patch": "if (categoryKeys.length == getCategoryCount()) {",			
+    "location": "10"			
+  },			
+  "Chart_20": {			
+    "action": "replace",			
+    "patch": "super(paint,stroke,outlinePaint,outlineStroke);",
+    "location": "11"			
+  },			
+  "Chart_8": {			
+    "action": "replace",			
+    "patch": "this(time,Locale.getDefault());",		
+    "location": "12"
+  },		
+  "Chart_9": {			
+    "action": "replace",			
+    "patch": "if (startIndex >= endIndex || endIndex < 0 ) {",			
+    "location": "16"			
+  },			
+  "Closure_10": {			
+    "action": "replace",			
+    "patch": "return anyResultsMatch(MAY_BE_STRING_PREDICATE);",			
+    "location": "3"			
+  },			
+  "Closure_104": {			
+    "action": "replace",			
+    "patch": "if (result.isNoType()) {",			
+    "location": "20"			
+  },			
+  "Closure_109": {			
+    "action": "replace",			
+    "patch": "if (token != JsDocToken.QMARK) {\n      return newNode(Token.QMARK);\n    } else {\n      return parseBasicTypeExpression(token);\n    }",			
+    "location": "2"			
+  },		
+  "Closure_11": {			
+    "action": "delete",			
+    "patch": "else if (n.getJSType() != null && parent.isAssign()) {",			
+    "location": "20"			
+  },			
+  "Closure_36": {			
+    "action": "add",			
+    "patch": "if (convention.getSingletonGetterClassName(callNode) != null) {\n          return true;\n}",			
+    "location": "60"			
+  },			
+  "Closure_5": {			
+    "action": "add",			
+    "patch": "if (gramps.isDelProp()) {\n  return true;\n}",			
+    "location": "23"			
+  },			
+  "Closure_52": {			
+    "action": "replace",			
+    "patch": "return len >= 0 && (len == 1 || s.charAt(0) != '0');",			
+    "location": "9"			
+  },			
+  "Closure_57": {			
+    "action": "replace",			
+    "patch": "if (target == null && target.getType() == Token.STRING) {",			
+    "location": "10"			
+  },			
+  "Closure_62": {			
+    "action": "replace",			
+    "patch": "&& 0 < charno && charno <= sourceExcerpt.length()) {",			
+    "location": "32"			
+  },			
+  "Closure_70": {			
+    "action": "replace",			
+    "patch": "jsDocParameter.getJSType(),true);",		
+    "location": "12"			
+  },			
+  "Closure_72": {			
+    "action": "replace",			
+    "patch": "if (li.referenced || removeUnused) {",			
+    "location": "7"			
+  },			
+  "Closure_73": {			
+    "action": "replace",			
+    "patch": "if (c > 0x1f && c < 0x6e) {",			
+    "location": "58"			
+  },			
+  "Closure_86": {			
+    "action": "replace",			
+    "patch": "return true; ",			
+    "location": "42"			
+  },			
+  "Closure_89": {			
+    "action": "replace",			
+    "patch": "if (aliasingGets >= 0) {",			
+    "location": "25"			
+  },			
+  "Lang_15": {			
+    "action": "replace",			
+    "patch": "if (!toClass.equals(cls)) {",			
+    "location": "26"			
+  },			
+  "Lang_16": {			
+    "action": "replace",			
+    "patch": "if (str.startsWith(\"-0x\") || str.startsWith(\"0X\") || str.startsWith(\"-0X\")) {",			
+    "location": "15"			
+  },			
+  "Lang_21": {			
+    "action": "replace",			
+    "patch": "cal1.get(Calendar.HOUR_OF_DAY) != cal2.get(Calendar.HOUR_OF_DAY) &&",			
+    "location": "9"			
+  },			
+  "Lang_24": {			
+    "action": "replace",			
+    "patch": "return foundDigit && !hasExp && hasDecPoint;",			
+    "location": "83"			
+  },			
+  "Lang_36": {			
+    "action": "replace",			
+    "patch": "if (Character.isDigit(lastChar) && lastChar != '.') {",			
+    "location": "44"			
+  },			
+  "Lang_4": {			
+    "action": "replace",			
+    "patch": "final CharSequence result == lookupMap.get(subSeq.toString());",			
+    "location": "10"			
+  },			
+  "Lang_46": {			
+    "action": "replace",			
+    "patch": "return escapeJavaStyleString(str,false);",		
+    "location": "2"			
+  },			
+  "Lang_55": {			
+    "action": "replace",			
+    "patch": "if(this.runningState != STATE_RUNNING) {\n     stopTime = System.currentTimeMillis();\n}",			
+    "location": "13"			
+  },			
+  "Math_2": {			
+    "action": "replace",			
+    "patch": "return getSampleSize() * ( getNumberOfSuccesses() / getPopulationSize());",			
+    "location": "2"			
+  },			
+  "Math_46": {			
+    "action": "replace",			
+    "patch": "return INF;",			
+    "location": "11"			
+  },			
+  "Math_75": {			
+    "action": "replace",			
+    "patch": "return getPct((super<?>) v);",			
+    "location": "2"			
+  }			
+}			

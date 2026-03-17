@@ -1,0 +1,82 @@
+﻿bug_id,patch,repair_action
+Chart_1,"replace
+if (dataset == null) { 
+8",replace
+Chart_11,"replace
+PathIterator iterator2 = p2.getPathIterator(null);
+12",replace
+Chart_13,"replace
+new Range(0.0, Math.max(constraint.getWidth() - w[2], 0.0)),
+34",replace
+Chart_20,"replace
+super(paint, stroke, outlinePaint, outlineStroke, alpha);
+13",replace
+Cli_28,"replace
+continue; 
+39",replace
+Cli_31,"replace
+argName = null; 
+4",replace
+Cli_34,"replace
+type = String.class; 
+6",replace
+Closure_30,"replace
+(new NodeTraversal(compiler, this)).traverseRoots(externs, root);
+2",replace
+Closure_52,"replace
+return len > 0 && (len == 1 || s.charAt(0) != '0');
+9",replace
+Closure_89,"replace
+if (aliasingGets > 0) {
+25",replace
+Compress_42,"replace
+return (getUnixMode() & UnixStat.FILE_TYPE_FLAG) == UnixStat.LINK_FLAG;
+2",replace
+JacksonCore_14,"replace
+if ((toRelease != src) && (toRelease.length < src.length)) { throw wrongBuf(); }
+16",replace
+JacksonCore_8,"replace
+if (!_hasSegments && _currentSegment != null)  return _currentSegment;
+7",replace
+JacksonDatabind_16,"replace
+ return (previous == null) || !previous.equals(ann); 
+6",replace
+JacksonDatabind_46,"replace
+ sb.append("">;""); 
+7",replace
+JacksonDatabind_70,"replace
+found = key.equals(_hashArea[i-1]);
+15",replace
+JacksonDatabind_96,"replace
+paramName = candidate.paramName(0);
+35",replace
+Jsoup_20,"add
+if (docData.length() > 0 && docData.charAt(0) == '\uFEFF') {
+    docData = docData.substring(1);
+}
+27",add
+Jsoup_41,"replace
+return this.tag.equals(element.tag);
+22",replace
+Jsoup_46,"replace
+accum.append(""&#xa0;"");
+41",replace
+Jsoup_84,"add
+Element el = namespace == null && tagName.contains("":"") ?
+                doc.createElementNS("""", tagName) : 
+11",add
+Jsoup_92,"replace
+attributes.add(pendingAttributeName, value);
+18",replace
+Lang_24,"replace
+return foundDigit && !hasExp && !hasDecPoint;
+83",replace
+Lang_35,"replace
+return m != null && m.containsKey(value);
+3",replace
+Lang_57,"replace
+return availableLocaleList().contains(locale);
+2",replace
+Math_63,"replace
+return equals(x, y, 1);
+2",replace

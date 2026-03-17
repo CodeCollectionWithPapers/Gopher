@@ -1,0 +1,7 @@
+{
+  "max_sublist_sum": {
+    "action": "replace",
+    "patch": "max_ending_here = max(x, max_ending_here + x)",
+    "location": "6"
+  }
+}

@@ -1,0 +1,291 @@
+﻿bug_id,patch
+13,"127 	return 0;
+128 }
+129 
+130 static int mod_read_comments(struct input_plugin_data *ip_data, struct keyval **comments)
+131 {
+132 	struct mod_private *priv = ip_data->private;
+133 	struct keyval *c;
+134 	const char *name;
+135 
+136 	c = xnew0(struct keyval, 2);
+137 	name = ModPlug_GetName(priv->file);
+138 	if (name != NULL && *name != 0) {
+139 		c[0].key = xstrdup(""title"");
+140 		c[0].val = xstrdup(name);
+141 	}
+142 	*comments = c;
+143 	return 0;
+144 }
+145 
+146 static int mod_duration(struct input_plugin_data *ip_data)"
+18,"234 	return 0;
+235 }
+236 
+237 static int wav_read_comments(struct input_plugin_data *ip_data,
+238 		struct keyval **comments)
+239 {
+240 	*comments = xnew0(struct keyval, 1);
+241 	return 0;
+242 }
+243 
+244 static int wav_duration(struct input_plugin_data *ip_data)"
+25,"277 	return rc;
+278 }
+279 
+280 static int op_alsa_open(sample_format_t sf)
+281 {
+282 	int rc;
+283 
+284 	alsa_sf = sf;
+285 	alsa_frame_size = sf_get_frame_size(alsa_sf);
+286 
+287 	rc = snd_pcm_open(&alsa_handle, alsa_dsp_device, SND_PCM_STREAM_PLAYBACK, 0);
+288 	if (rc < 0) {
+289 		d_print(""snd_pcm_open: error: %s\n"", snd_strerror(rc));
+290 		goto error;
+291 	}
+292 
+293 	rc = alsa_set_hw_params();
+294 	if (rc)
+295 		goto close_error;
+296 	rc = alsa_set_sw_params();
+297 	if (rc)
+298 		goto close_error;
+299 
+300 	rc = snd_pcm_prepare(alsa_handle);
+301 	if (rc < 0) {
+302 		d_print(""snd_pcm_prepare: error: %s\n"", snd_strerror(rc));
+303 		goto close_error;
+304 	}
+305 	d_print(""opened\n"");
+306 	return 0;
+307 close_error:
+308 	snd_pcm_close(alsa_handle);
+309 error:
+310 	return alsa_error_to_op_error(rc);
+311 }
+312 
+313 static int op_alsa_close(void)"
+3,"223  * block; you can instruct the decoder to pass or filter other blocks with
+224  * FLAC__stream_decoder_set_metadata_*() calls.
+225  */
+226 static void metadata_cb(const Dec *dec, const FLAC__StreamMetadata *metadata, void *data)
+227 {
+228 	struct input_plugin_data *ip_data = data;
+229 	struct flac_private *priv = ip_data->private;
+230 
+231 	switch (metadata->type) {
+232 	case FLAC__METADATA_TYPE_STREAMINFO:
+233 		{
+234 			const FLAC__StreamMetadata_StreamInfo *si = &metadata->data.stream_info;
+235 
+236 			d_print(""STREAMINFO\n"");
+237 			ip_data->sf = sf_rate(si->sample_rate) | sf_bits(si->bits_per_sample) | sf_signed(1) | sf_channels(si->channels);
+238 			if (!ip_data->remote && si->total_samples)
+239 				priv->duration = si->total_samples / si->sample_rate;
+240 		}
+241 		break;
+242 	case FLAC__METADATA_TYPE_VORBIS_COMMENT:
+243 		d_print(""VORBISCOMMENT\n"");
+244 		if (priv->comments) {
+245 			d_print(""Ignoring\n"");
+246 		} else {
+247 			struct keyval *c;
+248 			int s, d, nr;
+249 
+250 			nr = metadata->data.vorbis_comment.num_comments;
+251 			c = xnew0(struct keyval, nr + 1);
+252 			for (s = 0, d = 0; s < nr; s++) {
+253 				const char *str = (const char *)metadata->data.vorbis_comment.comments[s].entry;
+254 				int i;
+255 
+256 				d_print(""comment: %s\n"", str);
+257 				for (i = 0; str[i]; i++) {
+258 					if (str[i] == '=')
+259 						break;
+260 				}
+261 				if (str[i] != '=') {
+262 					d_print(""invalid comment: '%s' ('=' expected)\n"", str);
+263 					continue;
+264 				}
+265 				c[d].key = xstrndup(str, i);
+266 				c[d].val = xstrdup(str + i + 1);
+267 				d++;
+268 			}
+269 			priv->comments = c;
+270 		}
+271 		break;
+272 	default:
+273 		d_print(""something else\n"");
+274 		break;
+275 	}
+276 }
+277 
+278 static void error_cb(const Dec *dec, FLAC__StreamDecoderErrorStatus status, void *data)"
+42,"137  * aling_left:
+138  *     1 => aling left. 0 => align right
+139  */
+140 static void print_str(char *buf, int *idx, const char *str, int width, int align_left)
+141 {
+142 	int d = *idx;
+143 
+144 	if (width) {
+145 		int ws_len;
+146 		int i = 0;
+147 
+148 		if (align_left) {
+149 			i = width;
+150 			d += u_copy_chars(buf + d, str, &i);
+151 
+152 			ws_len = width - i;
+153 			memset(buf + d, ' ', ws_len);
+154 			d += ws_len;
+155 		} else {
+156 			int s = 0;
+157 
+158 			ws_len = width - u_str_width(str);
+159 
+160 			if (ws_len > 0) {
+161 				memset(buf + d, ' ', ws_len);
+162 				d += ws_len;
+163 				i += ws_len;
+164 			}
+165 
+166 			if (ws_len < 0) {
+167 				int w, c = -ws_len;
+168 				uchar u;
+169 
+170 				while (c > 0) {
+171 					u_get_char(str, &s, &u);
+172 					w = u_char_width(u);
+173 					c -= w;
+174 				}
+175 				if (c < 0) {
+176 					/* gaah, skipped too much */
+177 					if (u_char_width(u) == 2) {
+178 						/* double-byte */
+179 						buf[d++] = ' ';
+180 					} else {
+181 						/* <xx> */
+182 						if (c == -3)
+183 							buf[d++] = hex_tab[(u >> 4) & 0xf];
+184 						if (c <= -2)
+185 							buf[d++] = hex_tab[u & 0xf];
+186 						buf[d++] = '>';
+187 					}
+188 				}
+189 			}
+190 
+191 			if (width - i > 0) {
+192 				int w = width - i;
+193 
+194 				d += u_copy_chars(buf + d, str + s, &w);
+195 			}
+196 		}
+197 	} else {
+198 		int s = 0;
+199 		uchar u;
+200 
+201 		while (1) {
+202 			u_get_char(str, &s, &u);
+203 			if (u == 0)
+204 				break;
+205 			u_set_char(buf, &d, u);
+206 		}
+207 	}
+208 	*idx = d;
+209 }
+210 
+211 static void print(char *str, const char *format, const struct format_option *fopts)"
+44,"137  * aling_left:
+138  *     1 => aling left. 0 => align right
+139  */
+140 static void print_str(char *buf, int *idx, const char *str, int width, int align_left)
+141 {
+142 	int d = *idx;
+143 
+144 	if (width) {
+145 		int ws_len;
+146 		int i = 0;
+147 
+148 		if (align_left) {
+149 			i = width;
+150 			d += u_copy_chars(buf + d, str, &i);
+151 
+152 			ws_len = width - i;
+153 			memset(buf + d, ' ', ws_len);
+154 			d += ws_len;
+155 		} else {
+156 			int s = 0;
+157 
+158 			ws_len = width - u_str_width(str);
+159 
+160 			if (ws_len > 0) {
+161 				memset(buf + d, ' ', ws_len);
+162 				d += ws_len;
+163 				i += ws_len;
+164 			}
+165 
+166 			if (ws_len < 0) {
+167 				int w, c = -ws_len;
+168 				uchar u;
+169 
+170 				while (c > 0) {
+171 					u_get_char(str, &s, &u);
+172 					w = u_char_width(u);
+173 					c -= w;
+174 				}
+175 				if (c < 0) {
+176 					/* gaah, skipped too much */
+177 					if (u_char_width(u) == 2) {
+178 						/* double-byte */
+179 						buf[d++] = ' ';
+180 					} else {
+181 						/* <xx> */
+182 						if (c == -3)
+183 							buf[d++] = hex_tab[(u >> 4) & 0xf];
+184 						if (c <= -2)
+185 							buf[d++] = hex_tab[u & 0xf];
+186 						buf[d++] = '>';
+187 					}
+188 				}
+189 			}
+190 
+191 			if (width - i > 0) {
+192 				int w = width - i;
+193 
+194 				d += u_copy_chars(buf + d, str + s, &w);
+195 			}
+196 		}
+197 	} else {
+198 		int s = 0;
+199 		uchar u;
+200 
+201 		while (1) {
+202 			u_get_char(str, &s, &u);
+203 			if (u == 0)
+204 				break;
+205 			u_set_char(buf, &d, u);
+206 		}
+207 	}
+208 	*idx = d;
+209 }
+210 
+211 static void print(char *str, const char *format, const struct format_option *fopts)"
+5,"445 	return 0;
+446 }
+447 
+448 static int flac_read_comments(struct input_plugin_data *ip_data, struct keyval **comments)
+449 {
+450 	struct flac_private *priv = ip_data->private;
+451 
+452 	if (priv->comments) {
+453 		*comments = comments_dup(priv->comments);
+454 	} else {
+455 		*comments = xnew0(struct keyval, 1);
+456 	}
+457 	return 0;
+458 }
+459 
+460 static int flac_duration(struct input_plugin_data *ip_data)"

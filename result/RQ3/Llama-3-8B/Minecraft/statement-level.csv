@@ -1,0 +1,13 @@
+﻿bug_id,patch,repair_action
+18,"replace
+struct keyval **comments)
+238",replace
+25,"replace
+d_print(""snd_pcm_open: error: %s\n"", snd_strerror(rc)); goto error;
+291",replace
+42,"replace
+int d = *idx;
+142",replace
+44,"add
+memset(buf + d, ' ', ws_len);
+161",add

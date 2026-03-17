@@ -1,0 +1,147 @@
+{
+  "BITCOUNT": {
+    "action": "replace",
+    "patch": "n = (n & (n - 1));",
+    "location": "4"
+  },
+  "BREADTH_FIRST_SEARCH": {
+    "action": "replace",
+    "patch": "while (!queue.isEmpty()) {",
+    "location": "7"
+  },
+  "BUCKETSORT": {
+    "action": "replace",
+    "patch": "for (Integer count : counts) {",
+    "location": "9"
+  },
+  "DEPTH_FIRST_SEARCH": {
+    "action": "replace",
+    "patch": "} else { nodesvisited.add(node);",
+    "location": "10"
+  },
+  "FIND_FIRST_IN_SORTED": {
+    "action": "replace",
+    "patch": "while (lo < hi) {",
+    "location": "5"
+  },
+  "FIND_IN_SORTED": {
+    "action": "replace",
+    "patch": "return binsearch(arr, x, mid + 1, end);",
+    "location": "9"
+  },
+  "FLATTEN": {
+    "action": "replace",
+    "patch": "result.add(x);return arr;",
+    "location": "9，13"
+  },
+  "GCD": {
+    "action": "replace",
+    "patch": "return gcd(b, a % b);",
+    "location": "5"
+  },
+  "GET_FACTORS": {
+    "action": "replace",
+    "patch": "return new ArrayList<Integer>(Arrays.asList(n)); ",
+    "location": "15"
+  },
+  "HANOI": {
+    "action": "replace",
+    "patch": "steps.add(new Pair<Integer,Integer>(start, end));",
+    "location": "13"
+  },
+  "IS_VALID_PARENTHESIZATION": {
+    "action": "replace",
+    "patch": "return depth == 0;",
+    "location": "12"
+  },
+  "KHEAPSORT": {
+    "action": "replace",
+    "patch": "for (Integer x : arr.subList(k, arr.size())) {",
+    "location": "8"
+  },
+  "KNAPSACK": {
+    "action": "replace",
+    "patch": "else if (weight <= j) {",
+    "location": "17"
+  },
+  "KTH": {
+    "action": "replace",
+    "patch": "return kth(above, k - num_lessoreq);",
+    "location": "19"
+  },
+  "LEVENSHTEIN": {
+    "action": "replace",
+    "patch": "return levenshtein(source.substring(1), target.substring(1));",
+    "location": "5"
+  },
+  "LIS": {
+    "action": "replace",
+    "patch": "longest = Math.max(longest, length + 1);",
+    "location": "19"
+  },
+  "LONGEST_COMMON_SUBSEQUENCE": {
+    "action": "replace",
+    "patch": "return a.charAt(0) + longest_common_subsequence(a.substring(1), b.substring(1));",
+    "location": "5"
+  },
+  "MAX_SUBLIST_SUM": {
+    "action": "replace",
+    "patch": "max_ending_here = Math.max(0,max_ending_here + x);",
+    "location": "8"
+  },
+  "MERGESORT": {
+    "action": "replace",
+    "patch": "if (arr.size() <= 1) {",
+    "location": "2"
+  },
+  "NEXT_PERMUTATION": {
+    "action": "replace",
+    "patch": "if (perm.get(i) < perm.get(j)) {",
+    "location": "5"
+  },
+  "PASCAL": {
+    "action": "replace",
+    "patch": "for (int c=0; c<=r; c++) {",
+    "location": "9"
+  },
+  "POSSIBLE_CHANGE": {
+    "action": "replace",
+    "patch": "if (total < 0 || coins.length == 0) {",
+    "location": "5"
+  },
+  "REVERSE_LINKED_LIST": {
+    "action": "replace",
+    "patch": "prevnode = node; node = nextnode;",
+    "location": "7"
+  },
+  "RPN_EVAL": {
+    "action": "replace",
+    "patch": "c = bin_op.apply(b,a);",
+    "location": "20"
+  },
+  "SHORTEST_PATHS": {
+    "action": "replace",
+    "patch": "weight_by_node.put(edge.get(1), update_weight);",
+    "location": "16"
+  },
+  "SHORTEST_PATH_LENGTHS": {
+    "action": "replace",
+    "patch": "length_by_path.get(Arrays.asList(i,k)) + length_by_path.get(Arrays.asList(k,j)));",
+    "location": "20"
+  },
+  "SQRT": {
+    "action": "replace",
+    "patch": "while (Math.abs(approx * approx - x) > epsilon) {",
+    "location": "3"
+  },
+  "TOPOLOGICAL_ORDERING": {
+    "action": "replace",
+    "patch": "if (orderedNodes.containsAll(nextNode.getPredecessors()) && !orderedNodes.contains(nextNode)) {",
+    "location": "13"
+  },
+  "TO_BASE": {
+    "action": "replace",
+    "patch": "result = String.valueOf(alphabet.charAt(i)) + result;",
+    "location": "8"
+  }
+}

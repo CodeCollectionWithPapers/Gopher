@@ -1,0 +1,61 @@
+﻿bug_id,patch,repair_action
+BUCKETSORT,"replace
+for (Integer count : counts) {
+9",replace
+DEPTH_FIRST_SEARCH,"replace
+} else { nodesvisited.add(node);
+10",replace
+FIND_FIRST_IN_SORTED,"replace
+while (lo < hi) {
+5",replace
+FIND_IN_SORTED,"replace
+return binsearch(arr, x, mid + 1, end);
+9",replace
+GCD,"replace
+return gcd(b, a % b);
+5",replace
+HANOI,"replace
+steps.add(new Pair<Integer,Integer>(start, end));
+13",replace
+IS_VALID_PARENTHESIZATION,"replace
+return depth == 0;
+12",replace
+KHEAPSORT,"replace
+for (Integer x : arr.subList(k, arr.size())) {
+8",replace
+KNAPSACK,"replace
+else if (weight <= j) {
+17",replace
+KTH,"replace
+return kth(above, k - num_lessoreq);
+19",replace
+LEVENSHTEIN,"replace
+return levenshtein(source.substring(1), target.substring(1));
+5",replace
+LIS,"replace
+longest = Math.max(longest, length + 1);
+19",replace
+MAX_SUBLIST_SUM,"replace
+max_ending_here = Math.max(0,max_ending_here + x);
+8",replace
+MERGESORT,"replace
+if (arr.size() <= 1) {
+2",replace
+NEXT_PERMUTATION,"replace
+if (perm.get(i) < perm.get(j)) {
+5",replace
+PASCAL,"replace
+for (int c=0; c<=r; c++) {
+9",replace
+POSSIBLE_CHANGE,"replace
+if (total < 0 || coins.length == 0) {
+5",replace
+REVERSE_LINKED_LIST,"replace
+prevnode = node; node = nextnode;
+7",replace
+SQRT,"replace
+while (Math.abs(approx * approx - x) > epsilon) {
+3",replace
+TO_BASE,"replace
+result = String.valueOf(alphabet.charAt(i)) + result;
+8",replace

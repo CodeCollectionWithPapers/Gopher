@@ -1,0 +1,187 @@
+{
+  "bitcount": {
+    "action": "replace",
+    "patch": "n &= n - 1",
+    "location": "4"
+  },
+  "breadth_first_search": {
+    "action": "replace",
+    "patch": "while queue:",
+    "location": "8"
+  },
+  "bucketsort": {
+    "action": "replace",
+    "patch": "for i, count in enumerate(counts):",
+    "location": "7"
+  },
+  "depth_first_search": {
+    "action": "add",
+    "patch": "nodesvisited.add(node)",
+    "location": "10"
+  },
+  "detect_cycle": {
+    "action": "replace",
+    "patch": "if hare is None or hare.successor is None:",
+    "location": "5"
+  },
+  "find_first_in_sorted": {
+    "action": "replace",
+    "patch": "while lo < hi:",
+    "location": "5"
+  },
+  "find_in_sorted": {
+    "action": "replace",
+    "patch": "return binsearch(mid+1, end)",
+    "location": "9"
+  },
+  "flatten": {
+    "action": "replace",
+    "patch": "yield x",
+    "location": "7"
+  },
+  "gcd": {
+    "action": "replace",
+    "patch": "return gcd(b, a % b)",
+    "location": "5"
+  },
+  "get_factors": {
+    "action": "replace",
+    "patch": "return [n]",
+    "location": "9"
+  },
+  "hanoi": {
+    "action": "replace",
+    "patch": "steps.append((start, end))",
+    "location": "6"
+  },
+  "is_valid_parenthesization": {
+    "action": "replace",
+    "patch": "return depth == 0",
+    "location": "11"
+  },
+  "kheapsort": {
+    "action": "replace",
+    "patch": "for x in arr[k:]:",
+    "location": "7"
+  },
+  "knapsack": {
+    "action": "replace",
+    "patch": "if weight <= j:",
+    "location": "11"
+  },
+  "kth": {
+    "action": "replace",
+    "patch": "return kth(above, k - num_lessoreq)",
+    "location": "12"
+  },
+  "levenshtein": {
+    "action": "replace",
+    "patch": "return levenshtein(source[1:], target[1:])",
+    "location": "11"
+  },
+  "lis": {
+    "action": "replace",
+    "patch": "longest = max(longest, length + 1)",
+    "location": "13"
+  },
+  "longest_common_subsequence": {
+    "action": "replace",
+    "patch": "return a[0] + longest_common_subsequence(a[1:], b[1:])",
+    "location": "6"
+  },
+  "max_sublist_sum": {
+    "action": "replace",
+    "patch": "max_ending_here = max(0, max_ending_here + x)",
+    "location": "6"
+  },
+  "mergesort": {
+    "action": "replace",
+    "patch": "if len(arr) <= 1:",
+    "location": "16"
+  },
+  "minimum_spanning_tree": {
+    "action": "replace",
+    "patch": "group_by_node[node] = group_by_node[u]",
+    "location": "11"
+  },
+  "next_palindrome": {
+    "action": "replace",
+    "patch": "return [1] + (len(digit_list) - 1) * [0] + [1]",
+    "location": "15"
+  },
+  "next_permutation": {
+    "action": "replace",
+    "patch": "if perm[i] < perm[j]:",
+    "location": "5"
+  },
+  "pascal": {
+    "action": "replace",
+    "patch": "for c in range(0, r+1):",
+    "location": "5"
+  },
+  "possible_change": {
+    "action": "replace",
+    "patch": "if total < 0 or not coins:",
+    "location": "4"
+  },
+  "powerset": {
+    "action": "replace",
+    "patch": "return rest_subsets + [[first] + subset for subset in rest_subsets]",
+    "location": "5"
+  },
+  "quicksort": {
+    "action": "replace",
+    "patch": "greater = quicksort([x for x in arr[1:] if x >= pivot])",
+    "location": "7"
+  },
+  "reverse_linked_list": {
+    "action": "replace",
+    "patch": "prevnode = node",
+    "location": "2"
+  },
+  "rpn_eval": {
+    "action": "replace",
+    "patch": "stack.append( op(token, b, a))",
+    "location": "18"
+  },
+  "shortest_path_lengths": {
+    "action": "replace",
+    "patch": "length_by_path[i, j] = min(\n                    length_by_path[i, j],\n                    length_by_path[i, k] + length_by_path[k, j]\n                )",
+    "location": "11"
+  },
+  "shunting_yard": {
+    "action": "replace",
+    "patch": "opstack.append(token)",
+    "location": "17"
+  },
+  "sieve": {
+    "action": "replace",
+    "patch": "if all(n % p > 0 for p in primes):",
+    "location": "4"
+  },
+  "sqrt": {
+    "action": "replace",
+    "patch": "while abs(x - approx ** 2) > epsilon:",
+    "location": "3"
+  },
+  "subsequences": {
+    "action": "replace",
+    "patch": "return [[]]",
+    "location": "3"
+  },
+  "topological_ordering": {
+    "action": "replace",
+    "patch": "if set(ordered_nodes).issuperset(nextnode.incoming_nodes) and nextnode not in ordered_nodes:",
+    "location": "6"
+  },
+  "to_base": {
+    "action": "replace",
+    "patch": "result = alphabet[i] + result",
+    "location": "8"
+  },
+  "wrap": {
+    "action": "replace",
+    "patch": "lines.append(text)",
+    "location": "10"
+  }
+}

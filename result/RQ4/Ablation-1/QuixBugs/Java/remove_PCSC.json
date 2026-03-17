@@ -1,0 +1,7 @@
+{
+  "REVERSE_LINKED_LIST": {
+    "action": "replace",
+    "patch": "prevnode = node; ",
+    "location": "7"
+  }
+}

@@ -1,0 +1,72 @@
+{
+  "Chart_8": {
+    "action": "replace",
+    "patch": "this(time, Locale.getDefault(),true);",
+    "location": "11"
+  },
+  "Chart_9": {
+    "action": "replace",
+    "patch": "if (startIndex >= endIndex || endIndex != 0 ) {",
+    "location": "16"
+  },
+  "Closure_104": {
+    "action": "replace",
+    "patch": "if (result.isNoType()) {",
+    "location": "20"
+  },
+  "Closure_11": {
+    "action": "delete",
+    "patch": "else if (n.getJSType() != null && !parent.isAssign()) {",
+    "location": "20"
+  },
+  "Closure_5": {
+    "action": "add",
+    "patch": "if (gramps.isDelProp()) {\n  return true;\n}",
+    "location": "23"
+  },
+  "Closure_52": {
+    "action": "replace",
+    "patch": "return len >= 0 && (len == 1 || s.charAt(0) != '0');",
+    "location": "9"
+  },
+  "Closure_70": {
+    "action": "replace",
+    "patch": "jsDocParameter.getJSType(), true);",
+    "location": "12"
+  },
+  "Closure_72": {
+    "action": "replace",
+    "patch": "if (li.referenced || removeUnused) {",
+    "location": "7"
+  },
+  "Closure_73": {
+    "action": "replace",
+    "patch": "if (c > 0x1f && c < 0x6e) {",
+    "location": "58"
+  },
+  "Closure_86": {
+    "action": "replace",
+    "patch": "return true; ",
+    "location": "42"
+  },
+  "Closure_89": {
+    "action": "replace",
+    "patch": "if (aliasingGets >= 0) {",
+    "location": "25"
+  },
+  "Lang_15": {
+    "action": "replace",
+    "patch": "if (!toClass.equals(cls)) {",
+    "location": "26"
+  },
+  "Lang_36": {
+    "action": "replace",
+    "patch": "if (Character.isDigit(lastChar) && lastChar != '.') {",
+    "location": "44"
+  },
+  "Math_46": {
+    "action": "replace",
+    "patch": "return INF;",
+    "location": "11"
+  }
+}

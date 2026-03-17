@@ -1,0 +1,211 @@
+﻿bug_id,patch,repair_action
+Chart_1,"replace
+if (dataset == null) {
+8",replace
+Chart_11,"replace
+PathIterator iterator2 = p2.getPathIterator(null);
+12",replace
+Chart_12,"replace
+setDataset(dataset);
+4",replace
+Chart_8,"replace
+this(time, zone, Locale.getDefault());
+12",replace
+Chart_9,"replace
+if (startIndex > endIndex || endIndex < 0 ) {
+16",replace
+Cli_25,"replace
+nextLineTabStop = 1;
+15",replace
+Cli_28,"replace
+continue; 
+39",replace
+Cli_31,"replace
+argName = null; 
+4",replace
+Cli_8,"replace
+pos = findWrapPos(text, width, 0); 
+21",replace
+Closure_123,"replace
+Context rhsContext = getContextForNoInOperator(context); 
+179",replace
+Closure_167,"replace
+if (restrictedType != null && restrictedType != originalType) { 
+3",replace
+Closure_168,"replace
+if (t.getScopeDepth() <= 1) { 
+10",replace
+Closure_21,"replace
+if (n.isExprResult() || n.isBlock()) {
+18",replace
+Closure_30,"replace
+(new NodeTraversal(compiler, this)).traverseRoots(externs, root);
+2",replace
+Closure_52,"replace
+return len > 0 && (len == 1 || s.charAt(0) != '0');
+9",replace
+Closure_57,"replace
+if (target != null && target.getType() == Token.STRING) {
+10",replace
+Closure_70,"replace
+jsDocParameter.getJSType(), false);
+12",replace
+Closure_72,"replace
+if (li.referenced || !removeUnused) {
+7",replace
+Closure_86,"replace
+return false; 
+42",replace
+Closure_89,"replace
+if (aliasingGets > 0) {
+25",replace
+Codec_1,"replace
+txt = txt.toLowerCase(java.util.Locale.ENGLISH);
+23",replace
+Compress_19,"replace
+if (rawCentralDirectoryData.length < expectedLength) {
+11",replace
+Compress_23,"replace
+dictSize |= (coder.properties[i + 1] & 0xffl) << (8 * i);
+8",replace
+Compress_42,"replace
+return (getUnixMode() & UnixStat.FILE_TYPE_FLAG) == UnixStat.LINK_FLAG;
+2",replace
+Csv_1,"replace
+ if (current == '\r' || (current == '\n' && lastChar != '\r')) { 
+4",replace
+Gson_13,"replace
+ if (last == NUMBER_CHAR_DIGIT && fitsInLong && (value != Long.MIN_VALUE || negative) && (value!=0 || false==negative)) { 
+91",replace
+JacksonCore_8,"replace
+if (!_hasSegments && _currentSegment != null)  return _currentSegment;
+7",replace
+JacksonDatabind_107,"replace
+return NullifyingDeserializer.instance;
+16",replace
+JacksonDatabind_110,"replace
+} else if (type.hasRawClass(CLASS_UNMODIFIABLE_LIST) || type.hasRawClass(CLASS_EMPTY_LIST)) {
+10",replace
+JacksonDatabind_16,"replace
+ return (previous == null) || !previous.equals(ann); 
+6",replace
+JacksonDatabind_17,"replace
+ && !TreeNode.class.isAssignableFrom(t.getRawClass())); 
+14",replace
+JacksonDatabind_27,"replace
+ if (ext.handlePropertyValue(p, ctxt, propName, null)) { 
+22",replace
+JacksonDatabind_34,"replace 
+visitFloatFormat(visitor, typeHint, JsonParser.NumberType.BIG_DECIMAL); 
+9",replace
+JacksonDatabind_46,"replace
+ sb.append("">;""); 
+7",replace
+JacksonDatabind_70,"replace
+found = key.equals(_hashArea[i-1]);
+15",replace
+JacksonDatabind_90,"replace
+|| canCreateUsingDelegate() || canCreateUsingArrayDelegate()
+3",replace
+JacksonDatabind_96,"replace
+paramName = candidate.paramName(0);
+35",replace
+JacksonXml_5,"replace
+_rootNameLookup = src._rootNameLookup;
+4",replace
+Jsoup_41,"replace
+return this.tag.equals(element.tag);
+22",replace
+Jsoup_57,"replace
+it.remove();
+12",replace
+Jsoup_62,"replace
+String name = t.asEndTag().name(); 
+2",replace
+Jsoup_92,"replace
+attributes.add(pendingAttributeName, value);
+18",replace
+Lang_15,"replace
+if (toClass.equals(cls)) {
+26",replace
+Lang_24,"replace
+return foundDigit && !hasExp && !hasDecPoint;
+83",replace
+Lang_29,"replace
+static int toJavaVersionInt(String version) {
+1",replace
+Lang_35,"replace
+return m != null && m.containsKey(value);
+3",replace
+Lang_4,"replace
+final CharSequence result = lookupMap.get(subSeq.toString());
+10",replace
+Lang_46,"replace
+return escapeJavaStyleString(str, false, false);
+2",replace
+Lang_57,"replace
+return availableLocaleList().contains(locale);
+2",replace
+Lang_59,"replace
+str.getChars(0, width, buffer, size);
+7",replace
+Math_100,"replace
+final int cols = problem.getUnboundParameters().length;
+9",replace
+Math_11,"replace
+return FastMath.pow(2 * FastMath.PI, -0.5 * dim) *
+7",replace
+Math_2,"replace
+return getSampleSize() * ((double) getNumberOfSuccesses() / getPopulationSize());
+2",replace
+Math_30,"replace
+final double n1n2prod = n1 * n2;
+6",replace
+Math_33,"replace
+if (Precision.compareTo(entry, 0d, epsilon) > 0) {
+12",replace
+Math_41,"replace
+for (int i = begin; i < begin + length; i++) {
+20",replace
+Math_47,"replace
+return isZero() ? NaN : INF;
+6",replace
+Math_57,"replace
+double sum = 0;
+15",replace
+Math_58,"replace
+return fit(guess);
+3",replace
+Math_63,"replace
+return equals(x, y, 1);
+2",replace
+Math_65,"replace
+chiSquare += residual * residual * residualsWeights[i];
+5",replace
+Math_67,"replace
+return optimaValues[0];
+2",replace
+Math_69,"replace
+out[i][j] = 2 * tDistribution.cumulativeProbability(-t);
+12",replace
+Math_81,"replace
+if (end - start > 3) {
+114",replace
+Math_82,"replace
+if (MathUtils.compareTo(entry, 0, epsilon) > 0) {
+7",replace
+Math_85,"replace
+if (fa * fb > 0.0 ) {
+34",replace
+Math_94,"replace
+if (u == 0 || v == 0) {
+2",replace
+Math_98,"replace
+final double[] out = new double[nRows];
+9",replace
+Mockito_11,"replace
+return method.hashCode();
+3",replace
+Mockito_24,"replace
+return invocation.getMock() == invocation.getArguments()[0] ? 0 : 1;
+14",replace

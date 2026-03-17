@@ -1,0 +1,22 @@
+{
+  "hanoi": {
+    "action": "replace",
+    "patch": "steps.append((start-1, end))",
+    "location": "6"
+  },
+  "levenshtein": {
+    "action": "replace",
+    "patch": "return levenshtein(source[0:], target[1:])",
+    "location": "11"
+  },
+  "max_sublist_sum": {
+    "action": "replace",
+    "patch": "max_ending_here = max(x, max_ending_here + x)",
+    "location": "6"
+  },
+  "wrap": {
+    "action": "replace",
+    "patch": "lines.append(text)",
+    "location": "10"
+  }
+}

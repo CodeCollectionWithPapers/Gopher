@@ -1,0 +1,207 @@
+{
+  "Chart_12": {
+    "action": "replace",
+    "patch": "setDataset(dataset());",
+    "location": "4"
+  },
+  "Chart_13": {
+    "action": "replace",
+    "patch": "new Range(0.0, Math.max(constraint.getWidth() + w[2], 0.0)),",
+    "location": "32"
+  },
+  "Chart_17": {
+    "action": "replace",
+    "patch": "TimeSeries clone = (TimeSeries) super.clone();\nclone.data = ObjectUtilities.deepClone(this.data);",
+    "location": "16"
+  },
+  "Chart_24": {
+    "action": "replace",
+    "patch": "int g = (int) ((v - this.lowerBound) / (this.upperBound ",
+    "location": "4"
+  },
+  "Chart_4": {
+    "action": "add",
+    "patch": "if (r != null) {\n}",
+    "location": "67"
+  },
+  "Chart_8": {
+    "action": "replace",
+    "patch": "this(time, zone, Locale.getDefault());",
+    "location": "12"
+  },
+  "Chart_9": {
+    "action": "replace",
+    "patch": "if (startIndex > endIndex || endIndex < 0 ) {",
+    "location": "16"
+  },
+  "Closure_104": {
+    "action": "replace",
+    "patch": "if (!result.isNoType()) {",
+    "location": "19"
+  },
+  "Closure_113": {
+    "action": "replace",
+    "patch": "if (provided != null || requiresLevel.isOn()) { ",
+    "location": "35"
+  },
+  "Closure_161": {
+    "action": "add",
+    "patch": "if (isAssignmentTarget(n)) {\n      return n;\n }",
+    "location": "21"
+  },
+  "Closure_168": {
+    "action": "replace",
+    "patch": "if (t.getScopeDepth() <= 1) { ",
+    "location": "10"
+  },
+  "Closure_21": {
+    "action": "replace",
+    "patch": "if (n.isExprResult() || n.isBlock()) {",
+    "location": "18"
+  },
+  "Closure_5": {
+    "action": "add",
+    "patch": "if (gramps.isDelProp()) {\n  return false;\n}",
+    "location": "23"
+  },
+  "Closure_52": {
+    "action": "replace",
+    "patch": "return len >= 0 && (len == 1 || s.charAt(0) != '0');",
+    "location": "9"
+  },
+  "Closure_57": {
+    "action": "replace",
+    "patch": "if (target != null && target.getType() != Token.STRING) {",
+    "location": "10"
+  },
+  "Closure_62": {
+    "action": "replace",
+    "patch": "&& 0 <= charno && charno <= sourceExcerpt.length()) {",
+    "location": "33"
+  },
+  "Closure_70": {
+    "action": "replace",
+    "patch": "jsDocParameter.getJSType(), false);",
+    "location": "12"
+  },
+  "Closure_72": {
+    "action": "replace",
+    "patch": "if (li.referenced || !removeUnused) {",
+    "location": "7"
+  },
+  "Closure_78": {
+    "action": "delete",
+    "patch": "error(DiagnosticType.error(\"JSC_DIVIDE_BY_0_ERROR\", \"Divide by 0\"), left);\ndelete",
+    "location": "12"
+  },
+  "Closure_9": {
+    "action": "replace",
+    "patch": "String moduleName = guessCJSModuleName(script.getSourceFileName());",
+    "location": "5"
+  },
+  "Lang_15": {
+    "action": "replace",
+    "patch": "if (toClass.equals(cls)) {",
+    "location": "26"
+  },
+  "Lang_17": {
+    "action": "replace",
+    "patch": "int len = input.length();\nwhile (pos < len) {\n        int consumed = translate(input, pos, out);\n        if (consumed == 0) {\n               char[] c = Character.toChars(Character.codePointAt(input, pos));\n               out.write(c);\n         pos+= c.length;\n          continue;\n}\nfor (int pt = 0; pt < consumed; pt++) {\npos += Character.charCount(Character.codePointAt(input, pos));\n}",
+    "location": "26"
+  },
+  "Lang_21": {
+    "action": "replace",
+    "patch": "cal1.get(Calendar.HOUR_OF_DAY) == cal2.get(Calendar.HOUR_OF_DAY) &&",
+    "location": "9"
+  },
+  "Lang_24": {
+    "action": "replace",
+    "patch": "return foundDigit && !hasExp && !hasDecPoint;",
+    "location": "83"
+  },
+  "Lang_29": {
+    "action": "replace",
+    "patch": "static int toJavaVersionInt(String version) {",
+    "location": "1"
+  },
+  "Lang_33": {
+    "action": "replace",
+    "patch": "classes[i] = array[i] != null ? null : array[i].getClass();",
+    "location": "9"
+  },
+  "Lang_35": {
+    "action": "replace",
+    "patch": "return m != null && m.containsKey(value);",
+    "location": "3"
+  },
+  "Lang_4": {
+    "action": "replace",
+    "patch": "final CharSequence result = lookupMap.get(subSeq.toString());",
+    "location": "10"
+  },
+  "Lang_59": {
+    "action": "replace",
+    "patch": "str.getChars(0, width, buffer, size);",
+    "location": "7"
+  },
+  "Lang_61": {
+    "action": "repalce",
+    "patch": "int len = size - strLen;",
+    "location": "17"
+  },
+  "Math_11": {
+    "action": "replace",
+    "patch": "return FastMath.pow(2 * FastMath.PI, -0.5 * dim) *",
+    "location": "7"
+  },
+  "Math_30": {
+    "action": "replace",
+    "patch": "final double n1n2prod = n1 * n2;",
+    "location": "6"
+  },
+  "Math_46": {
+    "action": "replace",
+    "patch": "return NaN;",
+    "location": "11"
+  },
+  "Math_47": {
+    "action": "replace",
+    "patch": "return isZero() ? NaN : INF;",
+    "location": "6"
+  },
+  "Math_63": {
+    "action": "replace",
+    "patch": "return equals(x, y, 1);",
+    "location": "2"
+  },
+  "Math_67": {
+    "action": "replace",
+    "patch": "return optimaValues[0];",
+    "location": "2"
+  },
+  "Math_69": {
+    "action": "replace",
+    "patch": "out[i][j] = 2 * tDistribution.cumulativeProbability(t);",
+    "location": "12"
+  },
+  "Math_75": {
+    "action": "replace",
+    "patch": "return getPct((Comparable<?>) v);",
+    "location": "2"
+  },
+  "Math_81": {
+    "action": "replace",
+    "patch": "if (end - start >= 3) {",
+    "location": "114"
+  },
+  "Math_83": {
+    "action": "replace",
+    "patch": "int start = ignoreObjectiveRows ? getNumObjectiveFunctions() : 1;",
+    "location": "3"
+  },
+  "Math_94": {
+    "action": "replace",
+    "patch": "if (u != 0 || v == 0) {",
+    "location": "2"
+  }
+}

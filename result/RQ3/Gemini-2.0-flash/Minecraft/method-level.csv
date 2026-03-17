@@ -1,0 +1,296 @@
+﻿bug_id,patch
+18,"234 	return 0;
+235 }
+236 
+237 static int wav_read_comments(struct input_plugin_data *ip_data,
+238 		struct keyval **comments)
+239 {
+240 	*comments = xnew0(struct keyval, 1);
+241 	return 0;
+242 }
+243 
+244 static int wav_duration(struct input_plugin_data *ip_data)"
+19,"234 	return 0;
+235 }
+236 
+237 static int wav_read_comments(struct input_plugin_data *ip_data,
+238 		struct keyval **comments)
+239 {
+240 	*comments = xnew0(struct keyval, 1);
+241 	return 0;
+242 }
+243 
+244 static int wav_duration(struct input_plugin_data *ip_data)"
+2,"223  * block; you can instruct the decoder to pass or filter other blocks with
+224  * FLAC__stream_decoder_set_metadata_*() calls.
+225  */
+226 static void metadata_cb(const Dec *dec, const FLAC__StreamMetadata *metadata, void *data)
+227 {
+228 	struct input_plugin_data *ip_data = data;
+229 	struct flac_private *priv = ip_data->private;
+230 
+231 	switch (metadata->type) {
+232 	case FLAC__METADATA_TYPE_STREAMINFO:
+233 		{
+234 			const FLAC__StreamMetadata_StreamInfo *si = &metadata->data.stream_info;
+235 
+236 			d_print(""STREAMINFO\n"");
+237 			ip_data->sf = sf_rate(si->sample_rate) | sf_bits(si->bits_per_sample) | sf_signed(1) | sf_channels(si->channels);
+238 			if (!ip_data->remote && si->total_samples)
+239 				priv->duration = si->total_samples / si->sample_rate;
+240 		}
+241 		break;
+242 	case FLAC__METADATA_TYPE_VORBIS_COMMENT:
+243 		d_print(""VORBISCOMMENT\n"");
+244 		if (priv->comments) {
+245 			d_print(""Ignoring\n"");
+246 		} else {
+247 			struct keyval *c;
+248 			int s, d, nr;
+249 
+250 			nr = metadata->data.vorbis_comment.num_comments;
+251 			c = xnew0(struct keyval, nr + 1);
+252 			for (s = 0, d = 0; s < nr; s++) {
+253 				const char *str = (const char *)metadata->data.vorbis_comment.comments[s].entry;
+254 				int i;
+255 
+256 				d_print(""comment: %s\n"", str);
+257 				for (i = 0; str[i]; i++) {
+258 					if (str[i] == '=')
+259 						break;
+260 				}
+261 				if (str[i] != '=') {
+262 					d_print(""invalid comment: '%s' ('=' expected)\n"", str);
+263 					continue;
+264 				}
+265 				c[d].key = xstrndup(str, i);
+266 				c[d].val = xstrdup(str + i + 1);
+267 				d++;
+268 			}
+269 			priv->comments = c;
+270 		}
+271 		break;
+272 	default:
+273 		d_print(""something else\n"");
+274 		break;
+275 	}
+276 }
+277 
+278 static void error_cb(const Dec *dec, FLAC__StreamDecoderErrorStatus status, void *data)"
+29,"132 }
+133 
+134 /* randomize hw params */
+135 static int alsa_set_hw_params(void)
+136 {
+137 	snd_pcm_hw_params_t *hwparams;
+138 	snd_pcm_uframes_t frames;
+139 	const char *cmd;
+140 	unsigned int rate;
+141 	int rc, fmt, dir;
+142 
+143 	snd_pcm_hw_params_alloca(&hwparams);
+144 
+145 	cmd = ""snd_pcm_hw_params_any"";
+146 	rc = snd_pcm_hw_params_any(alsa_handle, hwparams);
+147 	if (rc < 0)
+148 		goto error;
+149 
+150 	cmd = ""snd_pcm_hw_params_set_access"";
+151 	rc = snd_pcm_hw_params_set_access(alsa_handle, hwparams,
+152 			SND_PCM_ACCESS_RW_INTERLEAVED);
+153 	if (rc < 0)
+154 		goto error;
+155 
+156 	fmt = snd_pcm_build_linear_format(sf_get_bits(alsa_sf), sf_get_bits(alsa_sf),
+157 			sf_get_signed(alsa_sf) ? 0 : 1,
+158 			sf_get_bigendian(alsa_sf));
+159 	cmd = ""snd_pcm_hw_params_set_format"";
+160 	rc = snd_pcm_hw_params_set_format(alsa_handle, hwparams, fmt);
+161 	if (rc < 0)
+162 		goto error;
+163 
+164 	alsa_fmt = fmt;
+165 
+166 	cmd = ""snd_pcm_hw_params_set_channels"";
+167 	rc = snd_pcm_hw_params_set_channels(alsa_handle, hwparams, sf_get_channels(alsa_sf));
+168 	if (rc < 0)
+169 		goto error;
+170 
+171 	cmd = ""snd_pcm_hw_params_set_rate"";
+172 	rate = sf_get_rate(alsa_sf);
+173 	dir = 0;
+174 	rc = snd_pcm_hw_params_set_rate_near(alsa_handle, hwparams, &rate, &dir);
+175 	if (rc < 0)
+176 		goto error;
+177 	d_print(""rate=%d\n"", rate);
+178 
+179 #if defined(SET_BUFFERTIME)
+180 	/* fscking alsa */
+181 	alsa_buffer_time = 500e3;
+182 	alsa_period_time = 50e3;
+183 
+184 	cmd = ""snd_pcm_hw_params_set_buffer_time_near"";
+185 	dir = 0;
+186 	rc = snd_pcm_hw_params_set_buffer_time_near(alsa_handle, hwparams, &alsa_buffer_time, &dir);
+187 	if (rc < 0)
+188 		goto error;
+189 
+190 	cmd = ""snd_pcm_hw_params_set_period_time_near"";
+191 	dir = 0;
+192 	rc = snd_pcm_hw_params_set_period_time_near(alsa_handle, hwparams, &alsa_period_time, &dir);
+193 	if (rc < 0)
+194 		goto error;
+195 #endif
+196 
+197 	alsa_can_pause = snd_pcm_hw_params_can_pause(hwparams);
+198 	d_print(""can pause = %d\n"", alsa_can_pause);
+199 
+200 	rc = snd_pcm_hw_params_get_period_size(hwparams, &frames, &dir);
+201 	if (rc < 0) {
+202 		alsa_period_size = -1;
+203 	} else {
+204 		alsa_period_size = frames * alsa_frame_size;
+205 	}
+206 
+207 	rc = snd_pcm_hw_params_get_buffer_size(hwparams, &frames);
+208 	if (rc < 0) {
+209 		alsa_buffer_size = -1;
+210 	} else {
+211 		alsa_buffer_size = frames * alsa_frame_size;
+212 	}
+213 	d_print(""period_size = %d (dir = %d), buffer_size = %d\n"",
+214 			alsa_period_size, dir, alsa_buffer_size);
+215 
+216 	cmd = ""snd_pcm_hw_params"";
+217 	rc = snd_pcm_hw_params(alsa_handle, hwparams);
+218 	if (rc < 0)
+219 		goto error;
+220 	return 0;
+221 error:
+222 	d_print(""%s: error: %s\n"", cmd, snd_strerror(rc));
+223 	return rc;
+224 }
+225 
+226 /* randomize sw params */"
+36,"170 	}
+171 }
+172 
+173 static int do_glob_match(struct list_head *head, struct list_head *first, const char *text)
+174 {
+175 	struct list_head *item = first;
+176 
+177 	while (item != head) {
+178 		struct glob_item *gitem;
+179 
+180 		gitem = container_of(item, struct glob_item, node);
+181 		if (gitem->type == GLOB_TEXT) {
+182 			int len = u_strlen(gitem->text);
+183 
+184 			if (u_strncasecmp(gitem->text, text, len))
+185 				return 0;
+186 			text += strlen(gitem->text);
+187 		} else if (gitem->type == GLOB_QMARK) {
+188 			uchar u;
+189 			int idx = 0;
+190 
+191 			u_get_char(text, &idx, &u);
+192 			if (u == 0)
+193 				return 0;
+194 			text += idx;
+195 		} else if (gitem->type == GLOB_STAR) {
+196 			/* after star there MUST be normal text (or nothing),
+197 			 * question marks have been moved before this star and
+198 			 * other stars have been sripped (see simplify)
+199 			 */
+200 			struct list_head *next;
+201 			struct glob_item *next_gi;
+202 			const char *t;
+203 			int tlen;
+204 
+205 			next = item->next;
+206 			if (next == head) {
+207 				/* this star was the last item => matched */
+208 				return 1;
+209 			}
+210 			next_gi = container_of(next, struct glob_item, node);
+211 			BUG_ON(next_gi->type != GLOB_TEXT);
+212 			t = next_gi->text;
+213 			tlen = strlen(t);
+214 			while (1) {
+215 				const char *pos;
+216 
+217 				pos = u_strcasestr_filename(text, t);
+218 				if (pos == NULL)
+219 					return 0;
+220 				if (do_glob_match(head, next->next, pos + tlen))
+221 					return 1;
+222 				text = pos + 1;
+223 			}
+224 		}
+225 		item = item->next;
+226 	}
+227 	return text[0] == 0;
+228 }
+229 
+230 int glob_match(struct list_head *head, const char *text)"
+50,"170 	}
+171 }
+172 
+173 static int do_glob_match(struct list_head *head, struct list_head *first, const char *text)
+174 {
+175 	struct list_head *item = first;
+176 
+177 	while (item != head) {
+178 		struct glob_item *gitem;
+179 
+180 		gitem = container_of(item, struct glob_item, node);
+181 		if (gitem->type == GLOB_TEXT) {
+182 			int len = u_strlen(gitem->text);
+183 
+184 			if (u_strncasecmp(gitem->text, text, len))
+185 				return 0;
+186 			text += strlen(gitem->text);
+187 		} else if (gitem->type == GLOB_QMARK) {
+188 			uchar u;
+189 			int idx = 0;
+190 
+191 			u_get_char(text, &idx, &u);
+192 			if (u == 0)
+193 				return 0;
+194 			text += idx;
+195 		} else if (gitem->type == GLOB_STAR) {
+196 			/* after star there MUST be normal text (or nothing),
+197 			 * question marks have been moved before this star and
+198 			 * other stars have been sripped (see simplify)
+199 			 */
+200 			struct list_head *next;
+201 			struct glob_item *next_gi;
+202 			const char *t;
+203 			int tlen;
+204 
+205 			next = item->next;
+206 			if (next == head) {
+207 				/* this star was the last item => matched */
+208 				return 1;
+209 			}
+210 			next_gi = container_of(next, struct glob_item, node);
+211 			BUG_ON(next_gi->type != GLOB_TEXT);
+212 			t = next_gi->text;
+213 			tlen = strlen(t);
+214 			while (1) {
+215 				const char *pos;
+216 
+217 				pos = u_strcasestr(text, t);
+218 				if (pos == NULL)
+219 					return 0;
+220 				if (do_glob_match(head, next->next, pos + tlen))
+221 					return 1;
+222 				text = pos + 1;
+223 			}
+224 		}
+225 		item = item->next;
+226 	}
+227 	return text[0] == 0;
+228 }
+229 
+230 int glob_match(struct list_head *head, const char *text)"

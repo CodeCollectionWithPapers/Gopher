@@ -1,0 +1,50 @@
+﻿bug_id,patch
+Cli_1,"add
+if(token.length() > 0){
+2"
+Cli_2,"replace
+return true; 
+3"
+Cli_3,"add
+if (token.isEmpty()) {
+        return false; }
+2"
+Cli_4,"replace
+if (currentOption != null && currentOption.requiresArg() && currentOption.getValue() == null) {
+3"
+code_1,"replace
+ if (Character.toUpperCase(c) < 'A' || Character.toUpperCase(c) > 'Z' || !Character.isLetter(c) ) {
+2"
+code_2,"add
+name = name.replaceAll(""[^a-zA-Z]"", """").replaceAll(""(?<!\\b)[aeiouAEIOU]"", """");
+12"
+Collection_1,"add
+for (final E obj : collection) {
+4"
+Compress_1,"replace
+new LZMAInputStream(in, uncompressedLength, propsByte, dictSize);
+17"
+Csv_1,"replace
+return get(e == null ? null : e.name());
+2"
+Jsoup_1,"replace
+return Arrays.binarySearch(booleanAttributes, Normalizer.lowerCase(key)) >= 0;
+2"
+Jsoup_2,"add
+final boolean normaliseWhite = prettyPrint && !Element.preserveWhitespace(parentNode);
+6"
+Jsoup_3,"replace
+if (element.isBlock() && (next instanceof TextNode || next instanceof Element && !((Element) next).tag.formatAsBlock()) && !TextNode.lastCharIsWhitespace(accum))
+8"
+Jsoup_4,"add
+decodePart(u.getPath()), decodePart(u.getQuery()), decodePart(u.getRef()));
+9"
+Jsoup_5,"replace
+eturn tag.isBlock() || (parent() != null && parent().tag().formatAsBlock()) || out.outline();
+3"
+Lang_1,"replace
+return rawComponentType != null ? Array.newInstance(rawComponentType, 0).getClass() : null;
+6"
+Lang_2,"replace
+catch (final ClassNotFoundException | IOException | NegativeArraySizeException ex) {
+5"
